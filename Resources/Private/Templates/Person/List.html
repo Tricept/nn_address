@@ -1,0 +1,51 @@
+{namespace nn=NN\NnAddress\ViewHelpers}
+<f:layout name="Default" />
+
+This Template is responsible for creating a table of domain objects.
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+  Resources:
+    Private:
+      Templates:
+        List.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+<f:section name="main">
+<h1>Listing for Person</h1>
+
+<f:flashMessages />
+
+<table class="tx_nnaddress" >
+	<tr>
+		<th>Name</th>
+		<th><f:translate key="tx_nnaddress_domain_model_person.organisation" /></th>
+        <th>Work phone</th>
+	</tr>
+
+	<f:for each="{persons}" as="person" iteration="i">
+		<tr class="{f:if(condition: '{i.isEven}', then: 'even', else: 'odd')}">
+			<td>
+              <f:link.action action="show" arguments="{person : person}">
+                <f:translate key="LLL:EXT:nn_address/Resources/Private/Language/locallang_csh_tx_nnaddress_domain_model_person.xlf:gender.{person.gender}" />
+                {person.title}
+                {person.firstName} {person.lastName}
+              </f:link.action>
+			<td>{person.organisation}</td>
+            <td>
+            	<f:comment>
+                	Example on using the NN Viewhelper to get a specific entry by type field.
+                    In this case get only the WORK Phone number.
+                    
+                    Other view helper examples, like only get the first (ordered by sorting) entry found in /Resources/Private/ContentDesigner/ templates
+                </f:comment>
+            	<f:alias map="{phone: '{person.phones -> nn:iterator.getByProperty(property:\'type\',value:1)}'}">
+                    {phone.number}
+                </f:alias>
+            </td>
+		</tr>
+	</f:for>
+</table>
+
+</f:section>

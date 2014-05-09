@@ -1,0 +1,18 @@
+page.includeCSS.tx_nnaddress = EXT:nn_address/Resources/Public/Css/default.css
+
+plugin.tx_nnaddress {
+	view {
+		templateRootPath = {$plugin.tx_nnaddress.view.templateRootPath}
+		partialRootPath = {$plugin.tx_nnaddress.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_nnaddress.view.layoutRootPath}
+	}
+	persistence {
+		storagePid = {$plugin.tx_nnaddress.persistence.storagePid}
+	}
+	features {
+		rewrittenPropertyMapper = 1
+	}
+	settings {
+		
+	}
+}

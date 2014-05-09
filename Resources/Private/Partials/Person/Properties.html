@@ -1,0 +1,121 @@
+<table class="tx-nn-address" >
+	<tr>
+		<td>
+			<f:translate key="tx_nnaddress_domain_model_person.gender" />
+		</td>
+		<td>
+			<f:translate key="LLL:EXT:nn_address/Resources/Private/Language/locallang_csh_tx_nnaddress_domain_model_person.xlf:gender.{person.gender}" />
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<f:translate key="tx_nnaddress_domain_model_person.title" />
+		</td>
+		<td>
+			{person.title}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<f:translate key="tx_nnaddress_domain_model_person.first_name" />
+		</td>
+		<td>
+			{person.firstName}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<f:translate key="tx_nnaddress_domain_model_person.second_first_name" />
+		</td>
+		<td>
+			{person.secondFirstName}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<f:translate key="tx_nnaddress_domain_model_person.last_name" />
+		</td>
+		<td>
+			{person.lastName}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<f:translate key="tx_nnaddress_domain_model_person.organisation" />
+		</td>
+		<td>
+			{person.organisation}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<f:translate key="tx_nnaddress_domain_model_person.birthday" />
+		</td>
+		<td>
+			{person.birthday -> f:format.date()}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<f:translate key="tx_nnaddress_domain_model_person.image" />
+		</td>
+		<td>
+        	<f:if condition="{person.image}">
+				<f:image src="uploads/tx_nnaddress/{person.image}" width="100c" height="140c" alt="" />
+            </f:if>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<f:translate key="tx_nnaddress_domain_model_person.notes" />
+		</td>
+		<td>
+			<f:format.nl2br>{person.notes}</f:format.nl2br>
+		</td>
+	</tr>
+    <tr>
+    	<td>
+        	<f:translate key="tx_nnaddress_domain_model_person.addresses" />
+        </td>
+        <td>
+            <f:for each="{person.addresses}" as="address"><f:format.raw>
+            	<strong><f:translate key="LLL:EXT:nn_address/Resources/Private/Language/locallang_csh_tx_nnaddress_domain_model_address.xlf:type.{address.type}" /></strong><br />
+                {address.street} {address.streetNr}<br />
+                {address.zip} {address.city}<br />
+                <br />
+            </f:format.raw></f:for>
+        </td>
+    </tr>
+    <tr>
+    	<td>
+        	<f:translate key="tx_nnaddress_domain_model_person.phones" />
+        </td>
+        <td>
+            <f:for each="{person.phones}" as="phone"><f:format.raw>
+            	<strong><f:translate key="LLL:EXT:nn_address/Resources/Private/Language/locallang_csh_tx_nnaddress_domain_model_phone.xlf:type.{phone.type}" /></strong><br />
+                {phone.number}<br />
+                <br />
+            </f:format.raw></f:for>
+        </td>
+    </tr>
+    <tr>
+    	<td>
+        	<f:translate key="tx_nnaddress_domain_model_person.mails" />
+        </td>
+        <td>
+            <f:for each="{person.mails}" as="mail"><f:format.raw>
+            	<strong><f:translate key="LLL:EXT:nn_address/Resources/Private/Language/locallang_csh_tx_nnaddress_domain_model_mail.xlf:type.{mail.type}" /></strong><br />
+                {mail.email}<br />
+                <br />
+            </f:format.raw></f:for>
+        </td>
+    </tr>
+    <tr>
+    	<td>
+        	<f:translate key="LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_flexForm_description" />
+        </td>
+        <td>
+			<f:format.nl2br>{person.flexform.description}</f:format.nl2br>
+        </td>
+    </tr>
+</table>

@@ -1,0 +1,29 @@
+
+table.tx_nnaddress {
+	border-collapse: collapse;
+	background: #FFF;
+	border: 1px solid #000;
+}
+
+table.tx_nnaddress tr th {
+	font-weight: bold;
+}
+
+table.tx_nnaddress tr td { 
+	padding: 10px;
+	border: 1px solid #000;
+}
+
+table.tx_nnaddress tr.even td {
+	background: #E2E2E2;
+}
+
+table.tx-nn-address {
+	border-collapse: collapse;
+	background: #FFF;
+}
+
+table.tx-nn-address td {
+	padding: 10px;
+	vertical-align: top;
+}

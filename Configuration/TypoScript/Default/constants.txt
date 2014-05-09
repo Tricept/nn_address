@@ -1,0 +1,14 @@
+plugin.tx_nnaddress {
+	view {
+		# cat=plugin.tx_nnaddress/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:nn_address/Resources/Private/Templates/
+		# cat=plugin.tx_nnaddress/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:nn_address/Resources/Private/Partials/
+		# cat=plugin.tx_nnaddress/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:nn_address/Resources/Private/Layouts/
+	}
+	persistence {
+		# cat=plugin.tx_nnaddress//a; type=string; label=Default storage PID
+		storagePid = 
+	}
+}
