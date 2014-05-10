@@ -183,43 +183,4 @@ $TCA['tx_nnaddress_domain_model_group'] = array(
 // Flexform autloader
 \NN\NnAddress\Utility\Flexform::flexFormAutoLoader();
 
-$_nnaddress_extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['nn_address']);
-
-// RealURL auto-configuration
-if ( $_nnaddress_extConf['enableRealUrl'] == 1 ) {
-	$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['realurl']['_DEFAULT']['postVarSets']['_DEFAULT']['details'] = array(
-		array(
-			'GETvar' => 'tx_nnaddress_abclist[person]',
-			'lookUpTable' => array(
-				'table' => 'tx_nnaddress_domain_model_person',
-				'id_field' => 'uid',
-				'alias_field' => 'CONCAT(last_name,\'_\',organisation)',
-				'addWhereClause' => ' AND NOT deleted',
-				'useUniqueCache' => 1,
-				'useUniqueCache_conf' => array(
-					'strtolower' => 1,
-					'spaceCharacter' => '-',
-				),
-			),
-		)
-	);
-
-	$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['realurl']['_DEFAULT']['postVarSets']['_DEFAULT']['address'] = array(
-		array(
-			'GETvar' => 'tx_nnaddress_list[person]',
-			'lookUpTable' => array(
-				'table' => 'tx_nnaddress_domain_model_person',
-				'id_field' => 'uid',
-				'alias_field' => 'CONCAT(last_name,\'_\',organisation)',
-				'addWhereClause' => ' AND NOT deleted',
-				'useUniqueCache' => 1,
-				'useUniqueCache_conf' => array(
-					'strtolower' => 1,
-					'spaceCharacter' => '-',
-				),
-			),
-		)
-	);
-}
-
 ?>
