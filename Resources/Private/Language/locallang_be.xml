@@ -12,14 +12,5 @@
 		<languageKey index="de" type="array">
 			<label index="extmng.flexForm"><![CDATA[Optionale FlexForm Datei um die Personen Daten zu erweitern]]></label>
 		</languageKey>
-		
-		
-		<languageKey index="default" type="array">
-			<label index="extmng.enableRealUrl">Enable realURL configuration</label>
-		</languageKey>
-		
-		<languageKey index="de" type="array">
-			<label index="extmng.enableRealUrl"><![CDATA[RealURL Konfiguration aktivieren]]></label>
-		</languageKey>
 	</data>
 </T3locallang>
