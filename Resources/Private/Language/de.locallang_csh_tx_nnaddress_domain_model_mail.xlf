@@ -17,6 +17,9 @@
 			<trans-unit id="type.2">
 				<target>Andere</target>
 			</trans-unit>
+			<trans-unit id="type.3">
+				<target>General</target>
+			</trans-unit>
 			
 			<trans-unit id="email">
 				<target>E-Mail</target>
