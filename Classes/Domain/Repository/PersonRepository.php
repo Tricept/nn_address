@@ -149,5 +149,21 @@ class PersonRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 		
 		return $query->execute();
 	}
+	
+	/**
+	 * Find single contact by getSinglePersonViewHelper
+	 *
+	 * @param \integer $uid
+	 * @return \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult
+	 */
+	public function findSingleByViewHelper($uid) {
+		$query = $this->createQuery();
+		$constraints[] = $query->equals('uid', $uid);
+		$query->matching($query->logicalOr($constraints));
+		$query->getQuerySettings()->setRespectStoragePage(FALSE);
+		$person = $query->execute()->toArray();
+		
+		return $person[0];
+	}
 }
 ?>
