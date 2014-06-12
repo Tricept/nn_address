@@ -265,7 +265,7 @@ $TCA['tx_nnaddress_domain_model_person'] = array(
 			'config' => array(
 				'type' => 'select',
 				'foreign_table' => 'tx_nnaddress_domain_model_group',
-				'foreign_table_where' => ' ORDER BY tx_nnaddress_domain_model_group.title ',
+				'foreign_table_where' => ' AND tx_nnaddress_domain_model_group.sys_language_uid=###REC_FIELD_sys_language_uid### ORDER BY tx_nnaddress_domain_model_group.title ',
 				'MM' => 'tx_nnaddress_person_group_mm',
 				'size' => 10,
 				'autoSizeMax' => 30,
