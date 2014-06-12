@@ -16,6 +16,7 @@ plugin.tx_nnaddress {
 	}
 	persistence {
 		storagePid = {$plugin.tx_nnaddress.persistence.storagePid}
+		recursive  = 99
 	}
 	features {
 		skipDefaultArguments    = 1
