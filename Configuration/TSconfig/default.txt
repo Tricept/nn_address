@@ -32,3 +32,4 @@ mod.web_list {
 }
 
 TCEFORM.tt_content.pi_flexform.types.tx_contentdesigner_useroncurpage.disabled = 1
+TCEFORM.tx_nnaddress_domain_model_person.groups.PAGE_TSCONFIG_IDLIST = 
