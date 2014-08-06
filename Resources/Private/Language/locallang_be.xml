@@ -6,11 +6,13 @@
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
-			<label index="extmng.flexForm">Optional FlexForm File to extend the Person Model</label>
+			<label index="extmng.flexForm">Optional FlexForm file to extend the person model</label>
+			<label index="extmng.flexFormPlugin">Optional FlexForm direktory for plugins</label>
 		</languageKey>
 		
 		<languageKey index="de" type="array">
 			<label index="extmng.flexForm"><![CDATA[Optionale FlexForm Datei um die Personen Daten zu erweitern]]></label>
+			<label index="extmng.flexFormPlugin"><![CDATA[Optionales FlexForm Dir um Plugineingabe zu erweitern]]></label>
 		</languageKey>
 	</data>
 </T3locallang>

@@ -12,6 +12,7 @@ class Flexform {
      */
     public static function flexFormAutoLoader() {
         global $TCA, $_EXTKEY;
+        $_extConfig = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['nn_address']);
 
         $FlexFormPath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/FlexForms/';
         $extensionName = \TYPO3\CMS\Core\Utility\GeneralUtility::underscoredToUpperCamelCase($_EXTKEY);
@@ -28,7 +29,21 @@ class Flexform {
             $TCA['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'layout,select_key,recursive';
             $TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
 
-            \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/' . $fileKey . '.xml');
+            $fileFlexForm = 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/' . $fileKey . '.xml';
+            
+            // Any flexform dir in extension config set?
+            if ( $_extConfig['flexFormPlugin'] != '' ) {
+              if ( is_dir(\TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($_extConfig['flexFormPlugin'])) ) {
+              
+                  // modify the relative path
+                  $path = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($_extConfig['flexFormPlugin']);
+                  $path = ( preg_match('/^(.*)\/$/', $path) ) ? $path : $path.'/';
+
+                  $fileFlexForm = 'FILE:' . $path . $fileKey . '.xml';
+                }            
+              } 
+
+              \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, $fileFlexForm);
         }
     }
 	
