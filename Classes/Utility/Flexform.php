@@ -13,12 +13,12 @@ class Flexform {
     public static function flexFormAutoLoader() {
         global $TCA, $_EXTKEY;
         $_extConfig = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['nn_address']);
-
+				
         $FlexFormPath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/FlexForms/';
         $extensionName = \TYPO3\CMS\Core\Utility\GeneralUtility::underscoredToUpperCamelCase($_EXTKEY);
-
+				
         $FlexForms = \TYPO3\CMS\Core\Utility\GeneralUtility::getFilesInDir($FlexFormPath, 'xml');
-
+				
         foreach ($FlexForms as $FlexForm) {
 			if ( preg_match("/^Model_(.*)$/",$FlexForm) ) continue;
 			
