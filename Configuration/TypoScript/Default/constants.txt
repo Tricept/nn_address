@@ -20,5 +20,8 @@ plugin.tx_nnaddress {
 		
 		# cat=plugin.tx_nnaddress//a; type=string; label=Which fields to look for search term
 		searchInFields = lastName, firstName, organisation
+		
+		# cat=plugin.tx_nnaddress//a; type=int; label=How many items per page are shown
+		itemsPerPage = 10
 	}
 }

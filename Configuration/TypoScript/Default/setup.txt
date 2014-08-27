@@ -25,6 +25,7 @@ plugin.tx_nnaddress {
 	settings {
 		swordValidationExpr = {$plugin.tx_nnaddress.settings.swordValidationExpr}
 		searchInFields      = {$plugin.tx_nnaddress.settings.searchInFields}
+		itemsPerPage        = {$plugin.tx_nnaddress.settings.itemsPerPage}
 	}
 	objects {
 		# Hook: Checks if action should be cached. In this case no caching if searchBox is enabled
