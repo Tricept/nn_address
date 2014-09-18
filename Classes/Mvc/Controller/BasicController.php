@@ -42,7 +42,11 @@ class BasicController extends \NN\NnAddress\Mvc\Controller\ActionController {
 	protected function getPersons() {
 		$sword  = $this->getRequestArgument('sword', $this->settings['swordValidationExpr']);
 		$groups = $this->getRequestArgument('group', '/^([0-9]{1,})$/');
-		$groups = ( empty($this->settings['groups']) && $groups !== NULL ) ? $groups : $this->settings['groups'];
+		//$groups = ( empty($this->settings['groups']) && $groups !== NULL ) ? $groups : $this->settings['groups'];
+		
+		// Filter only if allowed
+		if ( !empty($this->settings['groups']) && !empty($groups) && !\TYPO3\CMS\Core\Utility\GeneralUtility::inList($this->settings['groups'], $groups) )
+			unset($groups);
 		
 		if ( !empty($groups) ) {
 			if ( !empty($sword) ) {
