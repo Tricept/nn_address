@@ -147,5 +147,18 @@ class PersonController extends \NN\NnAddress\Mvc\Controller\BasicController {
 		$this->view->assign('persons', $persons);
 	}
 	
+	/**
+	 * action grouplist
+	 *
+	 * @return void
+	 */
+	public function grouplistAction() {
+		if ( $this->request->hasArgument('group') ) {
+			$groupId = $this->request->getArgument('group');
+			$groups = $this->groupRepository->findOneByUid($groupId)->getChildGroups();
+			$this->view->assign('groups', $groups);
+		}
+	}
+	
 }
 ?>

@@ -2,7 +2,7 @@
 ## Default styles
 #
 page.includeCSS.tx_nnaddress = EXT:nn_address/Resources/Public/Css/default.css
-
+page.includeJSFooter.tx_nnaddress  = EXT:nn_address/Resources/Public/JavaScript/default.js
 
 
 #
@@ -133,4 +133,34 @@ lib.nnAddressAssociated {
 	  useCacheHash              = 1
     }
   }
+}
+
+
+
+#
+## handling the event on changing a group
+#
+tx_nnaddress_ajax = PAGE
+tx_nnaddress_ajax {
+	typeNum = 9323
+	
+	config.disableAllHeaderCode = 1
+	config.metaCharset          = UTF-8
+	
+	10 = USER
+	10 {
+		userFunc      = TYPO3\CMS\Extbase\Core\Bootstrap->run
+		pluginName    = List
+		extensionName = NnAddress
+		controller    = Person
+		vendorName    = NN
+		action        = grouplist
+		
+		switchableControllerActions.Person.1 = grouplist
+		
+		view        =< plugin.tx_nnaddress.view
+		features    =< plugin.tx_nnaddress.features
+		persistence =< plugin.tx_nnaddress.persistence
+		settings    =< plugin.tx_nnaddress.settings
+	}
 }
