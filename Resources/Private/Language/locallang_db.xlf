@@ -153,6 +153,9 @@
 			<trans-unit id="tx_nnaddress_domain_model_group.description">
 				<source>Description</source>
 			</trans-unit>
+			<trans-unit id="tx_nnaddress_domain_model_group.groups">
+				<source>Parent Group</source>
+			</trans-unit>
 
 		</body>
 	</file>

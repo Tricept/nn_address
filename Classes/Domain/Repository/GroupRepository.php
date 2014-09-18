@@ -36,5 +36,61 @@ class GroupRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	protected $defaultOrderings = array(
 		'title' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING,
 	);
+	
+	public function findAll() {
+		$query = $this->createQuery();
+		$query->matching($query->equals('parentGroup', 0));
+		
+		$rootGroups = $query->execute();
+		
+		if ( $rootGroups->count() > 0 ) {
+			for ( $i = 0; $i < $rootGroups->count(); $i++ ) {
+				$group = &$rootGroups[$i];
+				$group->setChildGroups(new \TYPO3\CMS\Extbase\Persistence\ObjectStorage());
+				
+				$group = $this->findChildGroups($group);
+			}
+		}
+		
+		return $rootGroups;
+	}
+	
+	public function findOneByUid($uid) {
+		$query = $this->createQuery();
+		$query->setLimit(1);
+		$query->matching($query->equals('uid', intval($uid)));
+		
+		$rootGroups = $query->execute();
+		if ( $rootGroups->count() > 0 ) {
+			for ( $i = 0; $i < $rootGroups->count(); $i++ ) {
+				$group = &$rootGroups[$i];
+				$group->setChildGroups(new \TYPO3\CMS\Extbase\Persistence\ObjectStorage());
+				
+				$group = $this->findChildGroups($group);
+			}
+		}
+		
+		return $rootGroups->getFirst();
+	}
+	
+	private function findChildGroups(&$parentGroup) {
+		$query = $this->createQuery();
+		$query->matching($query->equals('parentGroup', $parentGroup->getUid()));
+		
+		$groups = $query->execute();
+		
+		if ( $groups->count() > 0 ) {
+			for ( $i = 0; $i < $groups->count(); $i++ ) {
+				$group = &$groups[$i];
+				$group->setChildGroups(new \TYPO3\CMS\Extbase\Persistence\ObjectStorage());
+				
+				$group = $this->findChildGroups($group);
+				
+				$parentGroup->addChildGroup($group);
+			}
+		}
+		
+		return $parentGroup;
+	}
 }
 ?>

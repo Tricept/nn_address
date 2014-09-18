@@ -55,6 +55,45 @@ class Group extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @var \string
 	 */
 	protected $flexform;
+	
+	/**
+	 * __construct
+	 *
+	 * @return Person
+	 */
+	public function __construct() {
+		//Do not remove the next line: It would break the functionality
+		$this->initStorageObjects();
+	}
+
+	/**
+	 * Initializes all ObjectStorage properties.
+	 *
+	 * @return void
+	 */
+	protected function initStorageObjects() {
+		$this->parentGroup = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$this->childGroups = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+	}
+	
+	/**
+	 * Returns the parentId
+	 *
+	 * @return \integer $parentId
+	 */
+	public function getParentId() {
+		return $this->parentId;
+	}
+
+	/**
+	 * Sets the parentId
+	 *
+	 * @param \integer $parentId
+	 * @return void
+	 */
+	public function setParentId($parentId) {
+		$this->parentId = $parentId;
+	}
 
 	/**
 	 * Returns the title
@@ -95,6 +134,22 @@ class Group extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	}
 	
 	/**
+	 * parentGroup
+	 *
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\NN\NnAddress\Domain\Model\Group>
+	 * @lazy
+	 */
+	protected $parentGroup;
+	
+	/**
+	 * childGroups
+	 *
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\NN\NnAddress\Domain\Model\Group>
+	 * @lazy
+	 */
+	protected $childGroups;
+	
+	/**
 	 * Returns the flexform
 	 *
 	 * @return \array $flexform
@@ -106,6 +161,84 @@ class Group extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 			
 			return $flexArray;
 		} else return array();
+	}
+	
+	/**
+	 * Adds a childGroup
+	 *
+	 * @param \NN\NnAddress\Domain\Model\Group $childGroup
+	 * @return void
+	 */
+	public function addChildGroup(\NN\NnAddress\Domain\Model\Group $childGroup) {
+		$this->childGroups->attach($childGroup);
+	}
+	
+	/**
+	 * Removes a childGroup
+	 *
+	 * @param \NN\NnAddress\Domain\Model\Group $groupToRemove The Address to be removed
+	 * @return void
+	 */
+	public function removeChildGroup(\NN\NnAddress\Domain\Model\Group $groupToRemove) {
+		$this->childGroups->detach($groupToRemove);
+	}
+	
+	/**
+	 * Returns the group
+	 *
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\NN\NnAddress\Domain\Model\Group> $childGroups
+	 */
+	public function getChildGroups() {
+		return $this->childGroups;
+	}
+	
+	/**
+	 * Sets the group
+	 *
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\NN\NnAddress\Domain\Model\Group> $childGroups
+	 * @return void
+	 */
+	public function setChildGroups(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $childGroups) {
+		$this->childGroups = $childGroups;
+	}
+	
+	/**
+	 * Adds a group
+	 *
+	 * @param \NN\NnAddress\Domain\Model\Group $parentGroup
+	 * @return void
+	 */
+	public function addParentGroup(\NN\NnAddress\Domain\Model\Group $parentGroup) {
+		$this->parentGroup->attach($group);
+	}
+	
+	/**
+	 * Removes a parentGroup
+	 *
+	 * @param \NN\NnAddress\Domain\Model\Group $groupToRemove The Address to be removed
+	 * @return void
+	 */
+	public function removeParentGroup(\NN\NnAddress\Domain\Model\Group $groupToRemove) {
+		$this->parentGroup->detach($groupToRemove);
+	}
+	
+	/**
+	 * Returns the group
+	 *
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\NN\NnAddress\Domain\Model\Group> $parentGroup
+	 */
+	public function getParentGroups() {
+		return $this->parentGroup;
+	}
+	
+	/**
+	 * Sets the group
+	 *
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\NN\NnAddress\Domain\Model\Group> $parentGroup
+	 * @return void
+	 */
+	public function setParentGroups(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $parentGroup) {
+		$this->parentGroup = $parentGroup;
 	}
 
 }

@@ -42,11 +42,20 @@ class BasicController extends \NN\NnAddress\Mvc\Controller\ActionController {
 	protected function getPersons() {
 		$sword  = $this->getRequestArgument('sword', $this->settings['swordValidationExpr']);
 		$groups = $this->getRequestArgument('group', '/^([0-9]{1,})$/');
-		//$groups = ( empty($this->settings['groups']) && $groups !== NULL ) ? $groups : $this->settings['groups'];
+		$groups = ( !empty($this->settings['groups']) && $groups !== NULL ) ? $groups : $this->settings['groups'];
 		
-		// Filter only if allowed
-		if ( !empty($this->settings['groups']) && !empty($groups) && !\TYPO3\CMS\Core\Utility\GeneralUtility::inList($this->settings['groups'], $groups) )
-			unset($groups);
+		if ( !empty($this->settings['groups']) && !empty($groups) ) {
+			// Append to selected groups the subgroups
+			$groupIdList = array($groups);
+			foreach ( explode(',', $groups) as $group ) {
+				$this->getGroupIdList($group, $groupIdList);
+			}
+			
+			$groups = implode(',',$groupIdList);
+			
+			#!\TYPO3\CMS\Core\Utility\GeneralUtility::inList($this->settings['groups'], $groups) )
+			#unset($groups);
+		}
 		
 		if ( !empty($groups) ) {
 			if ( !empty($sword) ) {
@@ -70,6 +79,22 @@ class BasicController extends \NN\NnAddress\Mvc\Controller\ActionController {
 			$this->view->assign('groups', $this->groupRepository->findAll());
 			$this->view->assign('selectedGroup', $this->getRequestArgument('group', '/^([0-9]{1,})$/'));
 		}
+	}
+	
+	private function getGroupIdList($groupId, &$idList) {
+		$curGroupObj = $this->groupRepository->findOneByUid(intval($groupId));
+		$childGroups = $curGroupObj->getChildGroups();
+		
+		if ( $childGroups->count() > 0 ) {
+			$childGroups = $childGroups->toArray();
+			foreach ( $childGroups as $childGroup ) {
+				$uid = $childGroup->getUid();
+				$idList[] = $uid;
+				$this->getGroupIdList($uid, $idList);
+			}
+		}
+		
+		return $idList;
 	}
 
 }

@@ -10,6 +10,9 @@
 			<trans-unit id="description.description">
 				<source>description</source>
 			</trans-unit>
+			<trans-unit id="groups.description">
+				<source>parent Group</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

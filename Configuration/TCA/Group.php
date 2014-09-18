@@ -6,10 +6,10 @@ if (!defined ('TYPO3_MODE')) {
 $TCA['tx_nnaddress_domain_model_group'] = array(
 	'ctrl' => $TCA['tx_nnaddress_domain_model_group']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, description',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, description, parent_group',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'l10n_parent, l10n_diffsource, hidden;;1, title, description, flexform'),
+		'1' => array('showitem' => 'l10n_parent, l10n_diffsource, hidden;;1, title, description, parent_group, flexform'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -112,6 +112,27 @@ $TCA['tx_nnaddress_domain_model_group'] = array(
 				'eval' => 'trim'
 			),
 		),
+		'parent_group' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_group.parent_group',
+			'config' => array(
+				'type' => 'select',
+				'foreign_table' => 'tx_nnaddress_domain_model_group',
+				'foreign_table_where' => 'AND tx_nnaddress_domain_model_group.parent_group <> ###REC_FIELD_uid### AND ((\'###PAGE_TSCONFIG_IDLIST###\' <> \'\' AND FIND_IN_SET(tx_nnaddress_domain_model_group.pid,\'###PAGE_TSCONFIG_IDLIST###\')) OR (\'###PAGE_TSCONFIG_IDLIST###\' = \'\')) AND tx_nnaddress_domain_model_group.sys_language_uid=###REC_FIELD_sys_language_uid###',
+				'renderMode' => 'tree',
+				'treeConfig' => array(
+					'parentField' => 'parent_group',
+					'appearance' => array(
+						'expandAll' => true,
+						'showHeader' => true,
+					),
+				),
+				'size' => 10,
+				'autoSizeMax' => 30,
+				'minitems' => 0,
+				'maxitems' => 1,
+			),
+		),
 		'flexform' => array(
 			'exclude' => 1,
 			'label' => '',
@@ -122,7 +143,7 @@ $TCA['tx_nnaddress_domain_model_group'] = array(
 					'default' => ''
 				),
 			),
-		)
+		),
 	),
 );
 
