@@ -14,6 +14,8 @@ $(function() {
 			return;
 		}
 		
+		$(el).addClass('loading');
+		
 		$.ajax({
 			type: 'POST',
 			dataType: 'json',
@@ -24,6 +26,8 @@ $(function() {
 			}
 		}).done(function(data) {
 			el.nextAll('select[name="' + el.attr('name') + '"]').remove();
+			
+			$(el).removeClass('loading');
 			
 			if ( data.length <= 0 ) return;
 			

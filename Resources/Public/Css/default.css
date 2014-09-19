@@ -162,3 +162,17 @@ table.tx_nnaddress tr.orderby_lastName th.lastName.order_1:after {
     background: #fafafa;
 }
 
+
+
+/**
+ * SELECT FORM ELEMENT
+ *
+ */
+select.tx_nnaddress_group.loading {
+		background: url('/typo3conf/ext/nn_address/Resources/Public/Icons/preload.png') no-repeat center center;
+}
+
+select.tx_nnaddress_group.loading  {
+		text-indent: -999px;
+}
+
