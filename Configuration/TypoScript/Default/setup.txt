@@ -2,7 +2,7 @@
 ## Default styles
 #
 page.includeCSS.tx_nnaddress = EXT:nn_address/Resources/Public/Css/default.css
-page.includeJSFooter.tx_nnaddress  = EXT:nn_address/Resources/Public/JavaScript/default.js
+page.includeJS.tx_nnaddress  = EXT:nn_address/Resources/Public/JavaScript/default.js
 
 
 #

@@ -75,12 +75,58 @@ class BasicController extends \NN\NnAddress\Mvc\Controller\ActionController {
 	 */
 	protected function setSearchPresets() {
 		if ( $this->settings['enableSearch'] == 1 ) {
+			$groupId = $this->getRequestArgument('group', '/^([0-9]{1,})$/');
+			
 			$this->view->assign('sword', $this->getRequestArgument('sword', $this->settings['swordValidationExpr']));
 			$this->view->assign('groups', $this->groupRepository->findAll());
-			$this->view->assign('selectedGroup', $this->getRequestArgument('group', '/^([0-9]{1,})$/'));
+			$this->view->assign('selectedGroup', $groupId);
+			
+			// Build the Hierachy Object for sub selected groups
+			$p = $this->groupRepository->findOneByUid(intval($groupId));
+			$p = ( is_object($p) ) ? $p->getParentGroups()->current() : NULL;
+			$options = ( is_object($p) ) ? $p->getChildGroups() : $this->groupRepository->findAll();
+			$idList[]        = array(
+				'model'   => $this->groupRepository->findOneByUid(intval($groupId)),
+				'options' => $options
+			);
+			$groupHierachy = @array_reverse($this->getGroupIdHierachy($groupId, $idList));
+			$this->view->assign('groupHierachy', $groupHierachy);
 		}
 	}
+	/**
+	 * Creates an array of each sub level by the latest selected group upwards
+	 *
+	 * @param int $groupId
+	 * @param array $idList
+	 * @return array
+	 */
+	private function getGroupIdHierachy($groupId, &$idList) {
+		if ( empty($groupId) ) return NULL;
+		$curGroupObj = $this->groupRepository->findOneByUid(intval($groupId));
+		$parentGroup = $curGroupObj->getParentGroups()->current();
+		
+		if ( is_object($parentGroup) ) {
+			$p = $parentGroup->getParentGroups()->current();
+			$options = ( is_object($p) ) ? $p->getChildGroups() : $this->groupRepository->findAll();
+		
+			$uid      = $parentGroup->getUid();
+			$idList[] = array(
+				'model'   => $parentGroup,
+				'options' => $options,
+			);
+			$this->getGroupIdHierachy($uid, $idList);
+		}
+		
+		return $idList;
+	}
 	
+	/**
+	 * Creates an array of each available subgroup IDs inside a group
+	 *
+	 * @param int $groupId
+	 * @param array $idList
+	 * @return array
+	 */
 	private function getGroupIdList($groupId, &$idList) {
 		$curGroupObj = $this->groupRepository->findOneByUid(intval($groupId));
 		$childGroups = $curGroupObj->getChildGroups();
@@ -88,7 +134,7 @@ class BasicController extends \NN\NnAddress\Mvc\Controller\ActionController {
 		if ( $childGroups->count() > 0 ) {
 			$childGroups = $childGroups->toArray();
 			foreach ( $childGroups as $childGroup ) {
-				$uid = $childGroup->getUid();
+				$uid      = $childGroup->getUid();
 				$idList[] = $uid;
 				$this->getGroupIdList($uid, $idList);
 			}
@@ -96,6 +142,6 @@ class BasicController extends \NN\NnAddress\Mvc\Controller\ActionController {
 		
 		return $idList;
 	}
-
+	
 }
 ?>

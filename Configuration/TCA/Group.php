@@ -118,7 +118,7 @@ $TCA['tx_nnaddress_domain_model_group'] = array(
 			'config' => array(
 				'type' => 'select',
 				'foreign_table' => 'tx_nnaddress_domain_model_group',
-				'foreign_table_where' => 'AND tx_nnaddress_domain_model_group.parent_group <> ###REC_FIELD_uid### AND ((\'###PAGE_TSCONFIG_IDLIST###\' <> \'\' AND FIND_IN_SET(tx_nnaddress_domain_model_group.pid,\'###PAGE_TSCONFIG_IDLIST###\')) OR (\'###PAGE_TSCONFIG_IDLIST###\' = \'\')) AND tx_nnaddress_domain_model_group.sys_language_uid=###REC_FIELD_sys_language_uid###',
+				'foreign_table_where' => ' AND tx_nnaddress_domain_model_group.parent_group <> ###REC_FIELD_uid### AND (((\'###PAGE_TSCONFIG_IDLIST###\' <> \'\' OR \'###PAGE_TSCONFIG_IDLIST###\' > 0) AND FIND_IN_SET(tx_nnaddress_domain_model_group.pid,\'###PAGE_TSCONFIG_IDLIST###\')) OR (\'###PAGE_TSCONFIG_IDLIST###\' = \'\' OR \'###PAGE_TSCONFIG_IDLIST###\' = 0)) AND tx_nnaddress_domain_model_group.sys_language_uid=###REC_FIELD_sys_language_uid###',
 				'renderMode' => 'tree',
 				'treeConfig' => array(
 					'parentField' => 'parent_group',
