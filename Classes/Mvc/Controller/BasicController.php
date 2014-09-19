@@ -42,9 +42,9 @@ class BasicController extends \NN\NnAddress\Mvc\Controller\ActionController {
 	protected function getPersons() {
 		$sword  = $this->getRequestArgument('sword', $this->settings['swordValidationExpr']);
 		$groups = $this->getRequestArgument('group', '/^([0-9]{1,})$/');
-		$groups = ( !empty($this->settings['groups']) && $groups !== NULL ) ? $groups : $this->settings['groups'];
+		$groups = ( $groups !== NULL ) ? $groups : $this->settings['groups'];
 		
-		if ( !empty($this->settings['groups']) && !empty($groups) ) {
+		if ( !empty($this->settings['groups']) || !empty($groups) ) {
 			// Append to selected groups the subgroups
 			$groupIdList = array($groups);
 			foreach ( explode(',', $groups) as $group ) {
@@ -128,6 +128,7 @@ class BasicController extends \NN\NnAddress\Mvc\Controller\ActionController {
 	 * @return array
 	 */
 	private function getGroupIdList($groupId, &$idList) {
+		if ( $groupId <= 0 ) return NULL;
 		$curGroupObj = $this->groupRepository->findOneByUid(intval($groupId));
 		$childGroups = $curGroupObj->getChildGroups();
 		
