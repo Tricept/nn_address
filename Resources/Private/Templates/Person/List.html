@@ -3,7 +3,10 @@
 <f:section name="main">
 
 <f:if condition="{settings.enableSearch}">
-	<f:render partial="Search/Form" arguments="{sword:sword,groups:groups,selectedGroup:selectedGroup,groupHierachy:groupHierachy}" />
+	<f:if condition="{settings.groupSearchTypeAnd}">
+		<f:then><f:render partial="Search/FormAnd" arguments="{sword:sword,groups:groups,selectedGroups:selectedGroups}" /></f:then>
+		<f:else><f:render partial="Search/Form" arguments="{sword:sword,groups:groups,selectedGroup:selectedGroup,groupHierachy:groupHierachy}" /></f:else>
+	</f:if>
 </f:if>
 
 <nn:widget.paginate objects="{persons}" as="paginatedPersons" configuration="{itemsPerPage:settings.itemsPerPage}">

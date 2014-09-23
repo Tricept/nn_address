@@ -41,26 +41,27 @@ class BasicController extends \NN\NnAddress\Mvc\Controller\ActionController {
 	 */
 	protected function getPersons() {
 		$sword  = $this->getRequestArgument('sword', $this->settings['swordValidationExpr']);
-		$groups = $this->getRequestArgument('group', '/^([0-9]{1,})$/');
+		$groups = $this->getRequestArgument('group', '/^([0-9]{1,})$/', (($this->settings['groupSearchTypeAnd'] == 1) ? TRUE : FALSE));
 		$groups = ( $groups !== NULL ) ? $groups : $this->settings['groups'];
 		
-		if ( !empty($this->settings['groups']) || !empty($groups) ) {
-			// Append to selected groups the subgroups
-			$groupIdList = array($groups);
-			foreach ( explode(',', $groups) as $group ) {
-				$this->getGroupIdList($group, $groupIdList);
+		if ( is_array($groups) ) {
+			$groups = implode(',', $groups);
+		} else {
+			if ( !empty($this->settings['groups']) || !empty($groups) ) {
+				// Append to selected groups the subgroups
+				$groupIdList = array($groups);
+				foreach ( explode(',', $groups) as $group ) {
+					$this->getGroupIdList($group, $groupIdList);
+				}
+				
+				$groups = implode(',',$groupIdList);
 			}
-			
-			$groups = implode(',',$groupIdList);
-			
-			#!\TYPO3\CMS\Core\Utility\GeneralUtility::inList($this->settings['groups'], $groups) )
-			#unset($groups);
 		}
 		
 		if ( !empty($groups) ) {
 			if ( !empty($sword) ) {
-				return $this->personRepository->findByGroupsAndSword($groups, $sword, $this->settings['searchInFields']);
-			} else return $this->personRepository->findByGroups($groups);
+				return $this->personRepository->findByGroupsAndSword($groups, $sword, $this->settings['searchInFields'], (($this->settings['groupSearchTypeAnd'] == 1) ? TRUE : FALSE));
+			} else return $this->personRepository->findByGroups($groups, (($this->settings['groupSearchTypeAnd'] == 1) ? TRUE : FALSE));
 		} else {
 			if ( !empty($sword) ) {
 				return $this->personRepository->findBySword($sword, $this->settings['searchInFields']);
@@ -75,22 +76,28 @@ class BasicController extends \NN\NnAddress\Mvc\Controller\ActionController {
 	 */
 	protected function setSearchPresets() {
 		if ( $this->settings['enableSearch'] == 1 ) {
-			$groupId = $this->getRequestArgument('group', '/^([0-9]{1,})$/');
+			$groupId = $this->getRequestArgument('group', '/^([0-9]{1,})$/', (($this->settings['groupSearchTypeAnd'] == 1) ? TRUE : FALSE));
 			
 			$this->view->assign('sword', $this->getRequestArgument('sword', $this->settings['swordValidationExpr']));
 			$this->view->assign('groups', $this->groupRepository->findAll());
-			$this->view->assign('selectedGroup', $groupId);
 			
-			// Build the Hierachy Object for sub selected groups
-			$p = $this->groupRepository->findOneByUid(intval($groupId));
-			$p = ( is_object($p) ) ? $p->getParentGroups()->current() : NULL;
-			$options = ( is_object($p) ) ? $p->getChildGroups() : $this->groupRepository->findAll();
-			$idList[]        = array(
-				'model'   => $this->groupRepository->findOneByUid(intval($groupId)),
-				'options' => $options
-			);
-			$groupHierachy = @array_reverse($this->getGroupIdHierachy($groupId, $idList));
-			$this->view->assign('groupHierachy', $groupHierachy);
+			if ( !is_array($groupId) ) {
+				$this->view->assign('selectedGroup', $groupId);
+			
+				// Build the Hierachy Object for sub selected groups
+				$p = $this->groupRepository->findOneByUid(intval($groupId));
+				$p = ( is_object($p) ) ? $p->getParentGroups()->current() : NULL;
+				$options = ( is_object($p) ) ? $p->getChildGroups() : $this->groupRepository->findAll();
+				$idList[]        = array(
+					'model'   => $this->groupRepository->findOneByUid(intval($groupId)),
+					'options' => $options
+				);
+				
+				$groupHierachy = @array_reverse($this->getGroupIdHierachy($groupId, $idList));
+				$this->view->assign('groupHierachy', $groupHierachy);
+			} else {
+				$this->view->assign('selectedGroups', $groupId);
+			}
 		}
 	}
 	/**

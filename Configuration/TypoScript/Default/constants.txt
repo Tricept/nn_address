@@ -23,5 +23,14 @@ plugin.tx_nnaddress {
 		
 		# cat=plugin.tx_nnaddress//a; type=int; label=How many items per page are shown
 		itemsPerPage = 10
+		
+		# cat=plugin.tx_nnaddress//a; type=boolean; label=Enable AND search of groups (if disabled, it looks for single group)
+		groupSearchTypeAnd = 0
+		
+		# cat=plugin.tx_nnaddress//a; type=boolean; label=Include JavaScript (not used if AND search enabled)
+		includeJS  = 0
+		
+		# cat=plugin.tx_nnaddress//a; type=boolean; label=Include Stylesheets
+		includeCSS = 1
 	}
 }

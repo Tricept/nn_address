@@ -1,9 +1,12 @@
 $(function() {
 
-	var nnSelector        = ".tx_nnaddress_search form select[name=tx_nnaddress_abclist\\[group\\]],.tx_nnaddress_search form select[name=tx_nnaddress_list\\[group\\]]",
-	    nnSelectorLast    = ".tx_nnaddress_search form select[name=tx_nnaddress_abclist\\[group\\]]:last,.tx_nnaddress_search form select[name=tx_nnaddress_list\\[group\\]]:last",
+	var nnSelector        = ".tx_nnaddress_search form select[name=tx_nnaddress_abclist\\[group\\]],.tx_nnaddress_search form select[name=tx_nnaddress_list\\[group\\]]" + 
+	                        ",.tx_nnaddress_search form select[name=tx_nnaddress_abclist\\[group\\]\\[\\]],.tx_nnaddress_search form select[name=tx_nnaddress_list\\[group\\]\\[\\]]",
+	    nnSelectorLast    = ".tx_nnaddress_search form select[name=tx_nnaddress_abclist\\[group\\]]:last,.tx_nnaddress_search form select[name=tx_nnaddress_list\\[group\\]]:last" + 
+			                    ",.tx_nnaddress_search form select[name=tx_nnaddress_abclist\\[group\\]\\[\\]]:last,.tx_nnaddress_search form select[name=tx_nnaddress_list\\[group\\]\\[\\]]:last",
 			nnSelectorForm    = '.tx_nnaddress_search form',
-			nnSelectorFormSel = "select[name=tx_nnaddress_abclist\\[group\\]],select[name=tx_nnaddress_list\\[group\\]]";
+			nnSelectorFormSel = "select[name=tx_nnaddress_abclist\\[group\\]],select[name=tx_nnaddress_list\\[group\\]]" + 
+			                    ",select[name=tx_nnaddress_abclist\\[group\\]\\[\\]],select[name=tx_nnaddress_list\\[group\\]\\[\\]]";
 	
 	function loadOptions(el) {
 		var curUrl = window.location.pathname;// + window.location.search;

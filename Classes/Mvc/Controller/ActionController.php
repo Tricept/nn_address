@@ -127,18 +127,38 @@ class ActionController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	 * Simply checks if an request argument is available and optional checks it with regular expression
 	 *
 	 * @param \string $argumentKey
-	 * @param $regexp
+	 * @param mixed $regexp
+	 * @param boolean $checkArray
 	 * @return mixed
 	 */
-	protected function getRequestArgument($argumentKey, $regexp = NULL) {
+	protected function getRequestArgument($argumentKey, $regexp = NULL, $checkArray = FALSE) {
 		if ( $this->request->hasArgument($argumentKey) ) {
-			$argument = strip_tags($this->request->getArgument($argumentKey));
-			
-			if ( $regexp !== NULL ) {
-				if ( preg_match($regexp, $argument) ) {
-					return $argument;
-				} else return NULL;
-			} else return $argument;
+			if ( $checkArray ) {
+				$arguments = $this->request->getArgument($argumentKey);
+				
+				if ( !is_array($arguments) ) return NULL;
+				
+				$result = array();
+				foreach ( $arguments as $key => $argument ) {
+					$argument = strip_tags($argument);
+					
+					if ( $regexp !== NULL ) {
+						if ( preg_match($regexp, $argument) ) {
+							$result[$key] = $argument;
+						} else return NULL;
+					} else $result[$key] = $argument;
+				}
+				
+				return $result;
+			} else {
+				$argument = strip_tags($this->request->getArgument($argumentKey));
+				
+				if ( $regexp !== NULL ) {
+					if ( preg_match($regexp, $argument) ) {
+						return $argument;
+					} else return NULL;
+				} else return $argument;
+			}
 		} else return NULL;
 	}
 

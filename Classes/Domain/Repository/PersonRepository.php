@@ -65,25 +65,29 @@ class PersonRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * Find all Persons by a Group
 	 *
 	 * @param \string $groupList Comma seperated list of Group IDs
+	 * @param boolean $andSearch
 	 * @return \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult
 	 */
-	public function findByGroups($groupList) {
+	public function findByGroups($groupList, $andSearch = FALSE) {
 		$query = $this->createQuery();
 		
 		$groupList = \TYPO3\CMS\Core\Utility\GeneralUtility::intExplode(",",$groupList);
 		
 		foreach ( $groupList as $group ) {
-			$constraints[] = $query->logicalAnd(
-				$query->contains('groups', $group),
-				$query->equals('groups.hidden',0),
-				$query->equals('groups.deleted',0)
-			);
+			if ( $group > 0 )
+				$constraints[] = $query->logicalAnd(
+					$query->contains('groups', $group),
+					$query->equals('groups.hidden',0),
+					$query->equals('groups.deleted',0)
+				);
 		}
 		
-		$query->matching(
-				$query->logicalOr($constraints),
-				$query->equals('pid', $this->storagePid)
-		);
+		if ( sizeof($constraints) > 0 ) {
+			$query->matching(
+					( ($andSearch) ? $query->logicalAnd($constraints) : $query->logicalOr($constraints)),
+					$query->equals('pid', $this->storagePid)
+			);
+		}# else $query->matching($query->equals('pid', $this->storagePid));
 		
 		return $query->execute();
 	}
@@ -116,11 +120,13 @@ class PersonRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	/**
 	 * Find all Persons by search string
 	 *
+	 * @param array $groupList
 	 * @param \string $sterm
 	 * @param \string $fieldList
+	 * @param boolean $andSearch
 	 * @return \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult
 	 */
-	public function findByGroupsAndSword($groupList, $sterm, $fieldList) {
+	public function findByGroupsAndSword($groupList, $sterm, $fieldList, $andSearch = FALSE) {
 		$query     = $this->createQuery();
 		$fieldList = \TYPO3\CMS\Extbase\Utility\ArrayUtility::trimExplode(',', $fieldList, true);
 		$groupList = \TYPO3\CMS\Core\Utility\GeneralUtility::intExplode(",",$groupList);
@@ -128,24 +134,32 @@ class PersonRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 		if ( sizeof($fieldList) <= 0 ) return false;
 		
 		foreach ( $groupList as $group ) {
-			$groupConstraints[] = $query->logicalAnd(
-				$query->contains('groups', $group),
-				$query->equals('groups.hidden',0),
-				$query->equals('groups.deleted',0)
-			);
+			if ( $group > 0 )
+				$groupConstraints[] = $query->logicalAnd(
+					$query->contains('groups', $group),
+					$query->equals('groups.hidden',0),
+					$query->equals('groups.deleted',0)
+				);
 		}
 		
 		foreach ( $fieldList as $field ) {
 			$constraints[] = $query->like($field, '%'.$sterm.'%');
 		}
 		
-		$query->matching(
+		if ( sizeof($groupConstraints) > 0 ) {
+			$query->matching(
 				$query->logicalAnd(
 					$query->logicalOr($constraints),
-					$query->logicalOr($groupConstraints)
+					( ($andSearch) ? $query->logicalAnd($groupConstraints) : $query->logicalOr($groupConstraints))
 				),
 				$query->equals('pid', $this->storagePid)
-		);
+			);
+		} else {
+			$query->matching(
+					$query->logicalOr($constraints),
+					$query->equals('pid', $this->storagePid)
+			);
+		}
 		
 		return $query->execute();
 	}

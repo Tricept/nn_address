@@ -1,9 +1,12 @@
 #
 ## Default styles
 #
-page.includeCSS.tx_nnaddress = EXT:nn_address/Resources/Public/Css/default.css
-page.includeJS.tx_nnaddress  = EXT:nn_address/Resources/Public/JavaScript/default.js
-
+[globalVar = LIT:1 = {$plugin.tx_nnaddress.settings.includeCSS}]
+  page.includeCSS.tx_nnaddress = EXT:nn_address/Resources/Public/Css/default.css
+[global]
+[globalVar = LIT:1 = {$plugin.tx_nnaddress.settings.groupSearchTypeAnd}] && [globalVar = LIT:1 = {$plugin.tx_nnaddress.settings.includeJS}]
+  page.includeJS.tx_nnaddress  = EXT:nn_address/Resources/Public/JavaScript/default.js
+[global]
 
 #
 ## Configuration
@@ -26,6 +29,7 @@ plugin.tx_nnaddress {
 		swordValidationExpr = {$plugin.tx_nnaddress.settings.swordValidationExpr}
 		searchInFields      = {$plugin.tx_nnaddress.settings.searchInFields}
 		itemsPerPage        = {$plugin.tx_nnaddress.settings.itemsPerPage}
+		groupSearchTypeAnd  = {$plugin.tx_nnaddress.settings.groupSearchTypeAnd}
 	}
 	objects {
 		# Hook: Checks if action should be cached. In this case no caching if searchBox is enabled
