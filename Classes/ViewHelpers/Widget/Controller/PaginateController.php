@@ -56,7 +56,11 @@ class PaginateController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCont
 		if ( version_compare(TYPO3_branch, '6.2', '<') ) {
 			\TYPO3\CMS\Extbase\Utility\ArrayUtility::arrayMergeRecursiveOverrule($this->configuration, $this->widgetConfiguration['configuration'], FALSE);
 		} else \TYPO3\CMS\Core\Utility\ArrayUtility::mergeRecursiveWithOverrule($this->configuration, $this->widgetConfiguration['configuration'], FALSE);
-		$this->numberOfPages = ceil(count($this->objects) / (int)$this->configuration['itemsPerPage']);
+
+        if ( $this->configuration['sliceSub'] ) {
+            $this->numberOfPages = ceil(array_sum(array_map("count", $this->objects)) / (int)$this->configuration['itemsPerPage']);
+        } else $this->numberOfPages = ceil(count($this->objects) / (int)$this->configuration['itemsPerPage']);
+
 		$this->maximumNumberOfLinks = (int)$this->configuration['maximumNumberOfLinks'];
 	}
 

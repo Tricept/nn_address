@@ -9,11 +9,12 @@ class AbcListActionHelper {
 	 *
 	 * @param string $firstChar
 	 * @param array $range
+     * @param integer $personCount
 	 * @param array $groupedPersons
 	 * @param $person
 	 * @return void
 	 */
-    public static function groupPerson(&$firstChar, &$range, &$groupedPersons, &$person) {
+    public static function groupPerson(&$firstChar, &$range, &$personCount, &$groupedPersons, &$person) {
 		// Put it in the result array
 		if ( array_key_exists($firstChar, $range) ) {
 			$groupedPersons[$firstChar][] = $person;
@@ -22,6 +23,8 @@ class AbcListActionHelper {
 			$groupedPersons['#'][] = $person;
 			$range['#']++;
 		}
+
+        $personCount++;
 	}
 	
 	/**

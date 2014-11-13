@@ -1,5 +1,6 @@
 <?php
 namespace NN\NnAddress\Controller;
+use \NN\NnAddress\Utility\AbcListActionHelper as AbcListActionHelper;
 
 /***************************************************************
  *  Copyright notice
@@ -78,29 +79,30 @@ class PersonController extends \NN\NnAddress\Mvc\Controller\BasicController {
 		
 		// Init basic variables
 		$persons        = $this->getPersons();
-		$charset        = \NN\NnAddress\Utility\AbcListActionHelper::getSystemCharset();
+		$charset        = AbcListActionHelper::getSystemCharset();
 		$range          = array();
+        $personCount    = 0;
 		$groupedPersons = array();
 		$filterChar     = $this->getRequestArgument('char', '/^([A-Z]{1}|NUM)$/');
 		$filterChar     = ( $filterChar == 'NUM' ) ? '#' : $filterChar;
 		
 		// Create grouping Array
-		\NN\NnAddress\Utility\AbcListActionHelper::createGroupArrays($range, $groupedPersons);
+		AbcListActionHelper::createGroupArrays($range, $groupedPersons);
 		
 		// Put persons into groupedPerson array
 		foreach ( $persons->toArray() as $person ) {
-			$firstChar = \NN\NnAddress\Utility\AbcListActionHelper::getFirstChar($person, $charset, $this->orderBy);
+			$firstChar = AbcListActionHelper::getFirstChar($person, $charset, $this->orderBy);
 			
 			if ( !empty($filterChar) ) { // If filter by Char activated, show only the selected
 				if ( $filterChar == $firstChar ) { // Add them to A-Z Group
-					\NN\NnAddress\Utility\AbcListActionHelper::groupPerson($firstChar, $range, $groupedPersons, $person);
+					AbcListActionHelper::groupPerson($firstChar, $range, $personCount, $groupedPersons, $person);
 				} elseif ( ($filterChar == '#') && (!array_key_exists($firstChar, $range)) ) { // Add them to # Group
-					\NN\NnAddress\Utility\AbcListActionHelper::groupPerson($firstChar, $range, $groupedPersons, $person);
+					AbcListActionHelper::groupPerson($firstChar, $range, $personCount, $groupedPersons, $person);
 				} else { // Just count
-					\NN\NnAddress\Utility\AbcListActionHelper::pullUpRange($firstChar, $range);
+					AbcListActionHelper::pullUpRange($firstChar, $range);
 				}
 			} else { // Show all Addresses
-				\NN\NnAddress\Utility\AbcListActionHelper::groupPerson($firstChar, $range, $groupedPersons, $person);
+				AbcListActionHelper::groupPerson($firstChar, $range, $personCount, $groupedPersons, $person);
 			}
 		}
 		
@@ -110,6 +112,7 @@ class PersonController extends \NN\NnAddress\Mvc\Controller\BasicController {
 		// Give it to fluid
 		$this->view->assign('range', $range);
 		$this->view->assign('groupedPersons', $groupedPersons);
+        $this->view->assign('personCount', $personCount);
 		$this->setSearchPresets();
 	}
 
