@@ -38,6 +38,25 @@ class PersonRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	);
 
 	/**
+	 * Create orderings to sort a query result by a $field
+	 * by a sorting given through the $values array
+	 *
+	 * @link http://www.buero-sonne.de/2014/10/16/mysql-orderby-field-in-extbase.html
+	 * @see \TYPO3\CMS\Extbase\Persistence\QueryInterface::setOrderings
+	 * @param \string $field Field to be sorted by
+	 * @param array $values Array of values to be sorted by
+	 * @return array
+	 */
+	protected function orderByField($field, $values) {
+		$orderings = array();
+		foreach ($values as $value) {
+			$orderings[$field . '=' . $value] =
+				\TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING;
+		}
+		return $orderings;
+	}
+
+	/**
 	 * Find all Persons by multiple UIDs
 	 *
 	 * @param \string $personList Comma separated list of Person UIDs
@@ -50,7 +69,7 @@ class PersonRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 		$query->getQuerySettings()->setRespectStoragePage(FALSE);
 		$query->getQuerySettings()->setRespectSysLanguage(FALSE);
 		$query->matching($query->in('uid', $personList));
-		$query->setOrderings(array());
+		$query->setOrderings($this->orderByField('uid', $personList));
 
 		return $query->execute();
 	}
