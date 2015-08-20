@@ -30,17 +30,44 @@
 			<trans-unit id="organisation.description">
 				<target>Organisation</target>
 			</trans-unit>
+			<trans-unit id="position.description">
+				<target>Position</target>
+			</trans-unit>
 			<trans-unit id="birthday.description">
 				<target>Geburtstag</target>
 			</trans-unit>
 			<trans-unit id="image.description">
 				<target>Bild</target>
 			</trans-unit>
+			<trans-unit id="street.description">
+				<target>Straße</target>
+			</trans-unit>
+			<trans-unit id="number.description">
+				<target>Nummer</target>
+			</trans-unit>
+			<trans-unit id="zip.description">
+				<target>PLZ</target>
+			</trans-unit>
+			<trans-unit id="city.description">
+				<target>Stadt</target>
+			</trans-unit>
+			<trans-unit id="phone.description">
+				<target>Telefon</target>
+			</trans-unit>
+			<trans-unit id="fax.description">
+				<target>Fax</target>
+			</trans-unit>
+			<trans-unit id="email.description">
+				<target>eMail</target>
+			</trans-unit>
 			<trans-unit id="notes.description">
 				<target>Notizen</target>
 			</trans-unit>
 			<trans-unit id="website.description">
 				<target>Webseite</target>
+			</trans-unit>
+			<trans-unit id="address.description">
+				<target>Adresse</target>
 			</trans-unit>
 			<trans-unit id="addresses.description">
 				<target>Adressen</target>

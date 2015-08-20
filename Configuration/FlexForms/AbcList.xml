@@ -56,8 +56,40 @@
 										<numIndex index="1">organisation</numIndex>
 									</numIndex>
 									<numIndex index="7" type="array">
+										<numIndex index="0">LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.position</numIndex>
+										<numIndex index="1">position</numIndex>
+									</numIndex>
+									<numIndex index="8" type="array">
 										<numIndex index="0">LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.birthday</numIndex>
 										<numIndex index="1">birthday</numIndex>
+									</numIndex>
+									<numIndex index="9" type="array">
+										<numIndex index="0">LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.street</numIndex>
+										<numIndex index="1">street</numIndex>
+									</numIndex>
+									<numIndex index="10" type="array">
+										<numIndex index="0">LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.number</numIndex>
+										<numIndex index="1">number</numIndex>
+									</numIndex>
+									<numIndex index="11" type="array">
+										<numIndex index="0">LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.zip</numIndex>
+										<numIndex index="1">zip</numIndex>
+									</numIndex>
+									<numIndex index="12" type="array">
+										<numIndex index="0">LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.city</numIndex>
+										<numIndex index="1">city</numIndex>
+									</numIndex>
+									<numIndex index="13" type="array">
+										<numIndex index="0">LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.phone</numIndex>
+										<numIndex index="1">phone</numIndex>
+									</numIndex>
+									<numIndex index="14" type="array">
+										<numIndex index="0">LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.fax</numIndex>
+										<numIndex index="1">fax</numIndex>
+									</numIndex>
+									<numIndex index="15" type="array">
+										<numIndex index="0">LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.email</numIndex>
+										<numIndex index="1">email</numIndex>
 									</numIndex>
 								</items>
 								<size>1</size>

@@ -19,7 +19,7 @@ plugin.tx_nnaddress {
 		swordValidationExpr = /^([\S\d\-\_\.\ ]+)$/i
 		
 		# cat=plugin.tx_nnaddress//a; type=string; label=Which fields to look for search term
-		searchInFields = lastName, firstName, organisation, addresses.country, addresses.city
+		searchInFields = lastName, firstName, organisation, position, city, email, addresses.country, addresses.city
 		
 		# cat=plugin.tx_nnaddress//a; type=int; label=How many items per page are shown
 		itemsPerPage = 10

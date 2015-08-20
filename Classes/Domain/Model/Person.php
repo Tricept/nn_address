@@ -77,6 +77,13 @@ class Person extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $organisation;
 
 	/**
+	 * position
+	 *
+	 * @var \string
+	 */
+	protected $position;
+
+	/**
 	 * birthday
 	 *
 	 * @var \DateTime
@@ -89,6 +96,56 @@ class Person extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @var \string
 	 */
 	protected $image;
+
+
+	/**
+	 * street
+	 *
+	 * @var \string
+	 */
+	protected $street;
+
+	/**
+	 * number
+	 *
+	 * @var \string
+	 */
+	protected $number;
+
+	/**
+	 * zip
+	 *
+	 * @var \string
+	 */
+	protected $zip;
+
+	/**
+	 * city
+	 *
+	 * @var \string
+	 */
+	protected $city;
+
+	/**
+	 * phone
+	 *
+	 * @var \string
+	 */
+	protected $phone;
+
+	/**
+	 * fax
+	 *
+	 * @var \string
+	 */
+	protected $fax;
+
+	/**
+	 * email
+	 *
+	 * @var \string
+	 */
+	protected $email;
 
 	/**
 	 * notes
@@ -295,6 +352,25 @@ class Person extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	}
 
 	/**
+	 * Returns the position
+	 *
+	 * @return \string $position
+	 */
+	public function getPosition() {
+		return $this->position;
+	}
+
+	/**
+	 * Sets the position
+	 *
+	 * @param \string $position
+	 * @return void
+	 */
+	public function setPosition($position) {
+		$this->position = $position;
+	}
+
+	/**
 	 * Returns the birthday
 	 *
 	 * @return \DateTime $birthday
@@ -332,6 +408,142 @@ class Person extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 		$this->image = $image;
 	}
 
+
+
+
+	/**
+	 * Returns the street
+	 *
+	 * @return \string $street
+	 */
+	public function getStreet() {
+		return $this->street;
+	}
+
+	/**
+	 * Sets the street
+	 *
+	 * @param \string $street
+	 * @return void
+	 */
+	public function setStreet($street) {
+		$this->street = $street;
+	}
+
+	/**
+	 * Returns the number
+	 *
+	 * @return \string $number
+	 */
+	public function getNumber() {
+		return $this->number;
+	}
+
+	/**
+	 * Sets the number
+	 *
+	 * @param \string $number
+	 * @return void
+	 */
+	public function setNumber($number) {
+		$this->number = $number;
+	}
+
+	/**
+	 * Returns the zip
+	 *
+	 * @return \string $zip
+	 */
+	public function getZip() {
+		return $this->zip;
+	}
+
+	/**
+	 * Sets the zip
+	 *
+	 * @param \string $zip
+	 * @return void
+	 */
+	public function setZip($zip) {
+		$this->zip = $zip;
+	}
+
+	/**
+	 * Returns the city
+	 *
+	 * @return \string $city
+	 */
+	public function getCity() {
+		return $this->city;
+	}
+
+	/**
+	 * Sets the city
+	 *
+	 * @param \string $city
+	 * @return void
+	 */
+	public function setCity($city) {
+		$this->city = $city;
+	}
+
+	/**
+	 * Returns the phone
+	 *
+	 * @return \string $phone
+	 */
+	public function getPhone() {
+		return $this->phone;
+	}
+
+	/**
+	 * Sets the phone
+	 *
+	 * @param \string $phone
+	 * @return void
+	 */
+	public function setPhone($phone) {
+		$this->phone = $phone;
+	}
+
+	/**
+	 * Returns the fax
+	 *
+	 * @return \string $fax
+	 */
+	public function getFax() {
+		return $this->fax;
+	}
+
+	/**
+	 * Sets the fax
+	 *
+	 * @param \string $fax
+	 * @return void
+	 */
+	public function setFax($fax) {
+		$this->fax = $fax;
+	}
+
+	/**
+	 * Returns the email
+	 *
+	 * @return \string $email
+	 */
+	public function getEmail() {
+		return $this->email;
+	}
+
+	/**
+	 * Sets the email
+	 *
+	 * @param \string $email
+	 * @return void
+	 */
+	public function setEmail($email) {
+		$this->email = $email;
+	}
+	
 	/**
 	 * Returns the notes
 	 *

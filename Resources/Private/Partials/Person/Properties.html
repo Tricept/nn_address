@@ -76,7 +76,18 @@
     </td>
   </tr>
   </f:if>
-  
+
+  <f:if condition="{person.position}">
+    <tr>
+      <td>
+        <f:translate key="tx_nnaddress_domain_model_person.position" />
+      </td>
+      <td>
+        {person.position}
+      </td>
+    </tr>
+  </f:if>
+
   <f:if condition="{person.birthday}">
   <tr>
     <td>
@@ -87,7 +98,63 @@
     </td>
   </tr>
   </f:if>
-  
+
+  <f:if condition="{person.street}">
+    <tr>
+      <td>
+        <f:translate key="tx_nnaddress_domain_model_person.address" />
+      </td>
+      <td>
+        {person.street} {person.number}<br>
+        {person.zip} {person.city}<br>
+      </td>
+    </tr>
+  </f:if>
+
+  <f:if condition="{person.phone}">
+    <tr>
+      <td>
+        <f:translate key="tx_nnaddress_domain_model_person.phone" />
+      </td>
+      <td>
+        {person.phone}
+      </td>
+    </tr>
+  </f:if>
+
+  <f:if condition="{person.fax}">
+    <tr>
+      <td>
+        <f:translate key="tx_nnaddress_domain_model_person.fax" />
+      </td>
+      <td>
+        {person.fax}
+      </td>
+    </tr>
+  </f:if>
+
+  <f:if condition="{person.email}">
+    <tr>
+      <td>
+        <f:translate key="tx_nnaddress_domain_model_person.email" />
+      </td>
+      <td>
+        <f:link.email email="{person.email}">{person.email}</f:link.email>
+      </td>
+    </tr>
+  </f:if>
+
+  <f:if condition="{person.website}">
+    <tr>
+      <td>
+        <f:translate key="tx_nnaddress_domain_model_person.website" />
+      </td>
+      <td>
+        <f:link.external uri="{person.website}"> {person.website}</f:link.external>
+      </td>
+    </tr>
+  </f:if>
+
   <f:if condition="{person.notes}">
   <tr>
     <td>

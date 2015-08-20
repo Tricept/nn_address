@@ -32,17 +32,44 @@
 			<trans-unit id="tx_nnaddress_domain_model_person.organisation">
 				<source>Organisation</source>
 			</trans-unit>
+			<trans-unit id="tx_nnaddress_domain_model_person.position">
+				<source>Position</source>
+			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_person.birthday">
 				<source>Birthday</source>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_person.image">
 				<source>Image</source>
 			</trans-unit>
+			<trans-unit id="tx_nnaddress_domain_model_person.street">
+				<source>Street</source>
+			</trans-unit>
+			<trans-unit id="tx_nnaddress_domain_model_person.number">
+				<source>Number</source>
+			</trans-unit>
+			<trans-unit id="tx_nnaddress_domain_model_person.zip">
+				<source>ZIP</source>
+			</trans-unit>
+			<trans-unit id="tx_nnaddress_domain_model_person.city">
+				<source>City</source>
+			</trans-unit>
+			<trans-unit id="tx_nnaddress_domain_model_person.phone">
+				<source>Phone</source>
+			</trans-unit>
+			<trans-unit id="tx_nnaddress_domain_model_person.fax">
+				<source>Fax</source>
+			</trans-unit>
+			<trans-unit id="tx_nnaddress_domain_model_person.email">
+				<source>eMail</source>
+			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_person.website">
 				<source>Website</source>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_person.notes">
 				<source>Notes</source>
+			</trans-unit>
+			<trans-unit id="tx_nnaddress_domain_model_person.address">
+				<source>Address</source>
 			</trans-unit>
 			<trans-unit id="tx_nnaddress_domain_model_person.addresses">
 				<source>Addresses</source>
