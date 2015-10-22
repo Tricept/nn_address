@@ -1,17 +1,15 @@
-<f:layout name="Default" />
-
-This Template is responsible for displaying a single view for a domain object
-
-If you modify this template, do not forget to change the overwrite settings
-in /Configuration/ExtensionBuilder/settings.yaml:
-  Resources:
-    Private:
-      Templates:
-        Show.html: keep
-
-Otherwise your changes will be overwritten the next time you save the extension in the extension builder
-
+<f:layout name="Default"/>
 <f:section name="main">
-<f:render partial="Person/Properties" arguments="{person:person}" />
-<a href="#" onclick="history.back(); return false;" class="button"><f:translate key="LLL:EXT:nn_address/Resources/Private/Language/locallang.xlf:back" /></a><br />
+    <f:if condition="{person}">
+        <f:then>
+            <f:render partial="Person/Properties" arguments="{person:person}"/>
+        </f:then>
+        <f:else>
+            <div class="alert alert-warning" role="alert">Kein Datensatz vorhanden!</div>
+        </f:else>
+    </f:if>
+
+    <a href="#" onclick="history.back(); return false;" class="button">
+        <f:translate key="LLL:EXT:nn_address/Resources/Private/Language/locallang.xlf:back"/>
+    </a><br/>
 </f:section>

@@ -1,0 +1,43 @@
+{namespace nn=NN\NnAddress\ViewHelpers}
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
+<div class="tx_nnaddress-teaser row">
+    <f:for each="{persons}" as="person" iteration="i">
+        <div class="col-md-12 col-sm-6 col-xs-12 equalheight-teaser-item">
+            <div class="teaser-item teaser-item-right teaser-item-resize">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <f:if condition="{person.image}">
+                            <v:media.image src="{person.image.0.uid}" class="img-responsive" treatIdAsReference="true" alt="{person.firstName} {person.lastName}" width="500c" height="500c"/>
+                        </f:if>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="teaser-headline">
+                            <h5>
+                                {person.firstName} {person.lastName}
+                                <f:if condition="{person.title}">
+                                    <br>
+                                    <small>{person.title}</small>
+                                </f:if>
+                                <br>
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="teaser-link">
+                    <f:if condition="{settings.detailview}">
+                        <f:then>
+                            <f:link.action pluginName="List"  pageUid="{settings.detailview}" controller="Person" action="show" arguments="{person : person}">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </f:link.action>
+                        </f:then>
+                        <f:else>
+                            <f:link.action pluginName="List" controller="Person" action="show" arguments="{person : person}">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </f:link.action>
+                        </f:else>
+                    </f:if>
+                </div>
+            </div>
+        </div>
+    </f:for>
+</div>

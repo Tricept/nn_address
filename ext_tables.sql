@@ -13,7 +13,7 @@ CREATE TABLE tx_nnaddress_domain_model_person (
 	last_name varchar(255) DEFAULT '' NOT NULL,
 	organisation varchar(255) DEFAULT '' NOT NULL,
 	birthday int(11) DEFAULT '0' NOT NULL,
-	image text NOT NULL,
+	image int(11) unsigned DEFAULT '0' NOT NULL,
 	website varchar(255) DEFAULT '' NOT NULL,
 	notes text NOT NULL,
 	addresses int(11) unsigned DEFAULT '0' NOT NULL,

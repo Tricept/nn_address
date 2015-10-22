@@ -12,10 +12,11 @@
 ## Configuration
 #
 plugin.tx_nnaddress {
+	mvc.callDefaultActionIfActionCantBeResolved = 1
 	view {
-		templateRootPath = {$plugin.tx_nnaddress.view.templateRootPath}
-		partialRootPath = {$plugin.tx_nnaddress.view.partialRootPath}
-		layoutRootPath = {$plugin.tx_nnaddress.view.layoutRootPath}
+		templateRootPaths.0 = {$plugin.tx_nnaddress.view.templateRootPath}
+		partialRootPaths.0 = {$plugin.tx_nnaddress.view.partialRootPath}
+		layoutRootPaths.0 = {$plugin.tx_nnaddress.view.layoutRootPath}
 	}
 	persistence {
 		storagePid = {$plugin.tx_nnaddress.persistence.storagePid}
@@ -37,17 +38,6 @@ plugin.tx_nnaddress {
 	}
 }
 
-
-
-#
-## A little trick to make smaller URLs
-#
-[globalVar = GP:tx_nnaddress_abclist|person > 0]
-	config.defaultGetVars.tx_nnaddress_abclist.action = show
-[global]
-[globalVar = GP:tx_nnaddress_list|person > 0]
-	config.defaultGetVars.tx_nnaddress_list.action = show
-[global]
 
 
 

@@ -122,7 +122,7 @@ class PersonController extends \NN\NnAddress\Mvc\Controller\BasicController {
 	 * @param \NN\NnAddress\Domain\Model\Person $person
 	 * @return void
 	 */
-	public function showAction(\NN\NnAddress\Domain\Model\Person $person) {
+	public function showAction(\NN\NnAddress\Domain\Model\Person $person = null) {
 		$this->view->assign('person', $person);
 	}
 	

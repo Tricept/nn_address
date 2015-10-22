@@ -31,6 +31,121 @@
 							</config> 
                         </TCEforms>
                     </settings.persons>
+                    <settings.template>
+                        <TCEforms>
+                            <label>Template</label>
+                            <config>
+                                <exclude>1</exclude>
+                                <type>select</type>
+                                <items type="array">
+                                    <numIndex index="0" type="array">
+                                        <numIndex index="0">Table</numIndex>
+                                        <numIndex index="1">0</numIndex>
+                                    </numIndex>
+                                    <numIndex index="1" type="array">
+                                        <numIndex index="0">Teaser</numIndex>
+                                        <numIndex index="1">1</numIndex>
+                                    </numIndex>
+                                    <numIndex index="2" type="array">
+                                        <numIndex index="0">TeaserModal</numIndex>
+                                        <numIndex index="1">2</numIndex>
+                                    </numIndex>
+                                </items>
+                                <size>1</size>
+                                <maxitems>1</maxitems>
+                            </config>
+                        </TCEforms>
+                    </settings.template>
+                    <settings.columnDesktop>
+                        <TCEforms>
+                            <label>Columns Desktop</label>
+                            <displayCond>FIELD:settings.template:=:2,1</displayCond>
+                            <config>
+                                <exclude>1</exclude>
+                                <type>select</type>
+                                <items type="array">
+                                    <numIndex index="0" type="array">
+                                        <numIndex index="0">12/12</numIndex>
+                                        <numIndex index="1">12</numIndex>
+                                    </numIndex>
+                                    <numIndex index="1" type="array">
+                                        <numIndex index="0">6/12</numIndex>
+                                        <numIndex index="1">6</numIndex>
+                                    </numIndex>
+                                    <numIndex index="2" type="array">
+                                        <numIndex index="0">4/12</numIndex>
+                                        <numIndex index="1">4</numIndex>
+                                    </numIndex>
+                                    <numIndex index="3" type="array">
+                                        <numIndex index="0">3/12</numIndex>
+                                        <numIndex index="1">3</numIndex>
+                                    </numIndex>
+                                </items>
+                                <size>1</size>
+                                <maxitems>1</maxitems>
+                            </config>
+                        </TCEforms>
+                    </settings.columnDesktop>
+                    <settings.columnTablet>
+                        <TCEforms>
+                            <label>Columns Tablet</label>
+                            <displayCond>FIELD:settings.template:=:2,1</displayCond>
+                            <config>
+                                <exclude>1</exclude>
+                                <type>select</type>
+                                <items type="array">
+                                    <numIndex index="0" type="array">
+                                        <numIndex index="0">12/12</numIndex>
+                                        <numIndex index="1">12</numIndex>
+                                    </numIndex>
+                                    <numIndex index="1" type="array">
+                                        <numIndex index="0">6/12</numIndex>
+                                        <numIndex index="1">6</numIndex>
+                                    </numIndex>
+                                    <numIndex index="2" type="array">
+                                        <numIndex index="0">4/12</numIndex>
+                                        <numIndex index="1">4</numIndex>
+                                    </numIndex>
+                                    <numIndex index="3" type="array">
+                                        <numIndex index="0">3/12</numIndex>
+                                        <numIndex index="1">3</numIndex>
+                                    </numIndex>
+                                </items>
+                                <size>1</size>
+                                <maxitems>1</maxitems>
+                            </config>
+                        </TCEforms>
+                    </settings.columnTablet>
+                    <settings.columnMobile>
+                        <TCEforms>
+                            <label>Columns Mobile</label>
+                            <displayCond>FIELD:settings.template:=:2,1</displayCond>
+                            <config>
+                                <exclude>1</exclude>
+                                <type>select</type>
+                                <items type="array">
+                                    <numIndex index="0" type="array">
+                                        <numIndex index="0">12/12</numIndex>
+                                        <numIndex index="1">12</numIndex>
+                                    </numIndex>
+                                    <numIndex index="1" type="array">
+                                        <numIndex index="0">6/12</numIndex>
+                                        <numIndex index="1">6</numIndex>
+                                    </numIndex>
+                                    <numIndex index="2" type="array">
+                                        <numIndex index="0">4/12</numIndex>
+                                        <numIndex index="1">4</numIndex>
+                                    </numIndex>
+                                    <numIndex index="3" type="array">
+                                        <numIndex index="0">3/12</numIndex>
+                                        <numIndex index="1">3</numIndex>
+                                    </numIndex>
+                                </items>
+                                <size>1</size>
+                                <maxitems>1</maxitems>
+                            </config>
+                        </TCEforms>
+                    </settings.columnMobile>
                 </el>
             </ROOT>
         </sDEF>

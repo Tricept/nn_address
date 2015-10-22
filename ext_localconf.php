@@ -20,7 +20,7 @@ if (!defined('TYPO3_MODE')) {
 	'NN.' . $_EXTKEY,
 	'List',
 	array(
-		'Person' => 'list, show, grouplist',
+		'Person' => 'list, grouplist',
 		
 	),
 	// non-cacheable actions

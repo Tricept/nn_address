@@ -1,0 +1,104 @@
+{namespace nn=NN\NnAddress\ViewHelpers}
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
+<div class="tx_nnaddress-teaser row">
+    <f:for each="{persons}" as="person" iteration="i">
+        <div class="col-md-{settings.columnDesktop} col-sm-{settings.columnTablet} col-xs-{settings.columnMobile} equalheight-teaser-item">
+            <div class="teaser-item teaser-item-right teaser-item-resize">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <f:if condition="{person.image}">
+                            <v:media.image src="{person.image.0.uid}" class="img-responsive" treatIdAsReference="true" alt="{person.firstName} {person.lastName}" width="500c" height="500c"/>
+                        </f:if>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="teaser-headline">
+                            <h5>
+                                {person.firstName} {person.lastName}
+                                <f:if condition="{person.title}">
+                                    <br>
+                                    <small>{person.title}</small>
+                                </f:if>
+                                <br>
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="teaser-link">
+                    <a href="#" data-toggle="modal" data-target="#nnaddress-modal-{person.uid}">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal fade" id="nnaddress-modal-{person.uid}" tabindex="-1" role="dialog" aria-labelledby="{address.name}" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 style="padding: 0; margin: 0;">
+                            {person.firstName} {person.lastName}
+                            <f:if condition="{person.title}">
+                                <br>
+                                <small>{person.title}</small>
+                            </f:if>
+                        </h2>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <f:if condition="{person.image}">
+                                <div class="col-md-5">
+                                    <f:if condition="{person.image}">
+                                        <v:media.image src="{person.image.0.uid}" class="img-responsive" treatIdAsReference="true" alt="{person.firstName} {person.lastName}" width="500c" height="500c"/>
+                                    </f:if>
+                                </div>
+                            </f:if>
+                            <div class="col-md-7">
+                                <f:if condition="{person.notes}">
+                                    <p class="tx-nn-address-notes">
+                                        <f:format.nl2br>{person.notes}</f:format.nl2br>
+                                    </p>
+                                </f:if>
+                                <div>
+                                    <dl>
+                                        <f:if condition="{person.phones}">
+                                            <f:for each="{person.phones}" as="phone">
+                                                <div>
+                                                    <f:format.raw>
+                                                        <dt>
+                                                            <f:translate key="type.phone.{phone.type}"/>
+                                                        </dt>
+                                                        <dd>
+                                                            {phone.number}
+                                                        </dd>
+                                                    </f:format.raw>
+                                                </div>
+                                            </f:for>
+                                        </f:if>
+                                        <f:if condition="{person.mails}">
+                                            <f:for each="{person.mails}" as="mail">
+                                                <div>
+                                                    <f:format.raw>
+                                                        <dt>
+                                                            <f:translate key="type.mail.{mail.type}"/>
+                                                        </dt>
+                                                        <dd>
+                                                            <f:link.email email="{mail.email}">{mail.email}</f:link.email>
+                                                        </dd>
+                                                    </f:format.raw>
+                                                </div>
+                                            </f:for>
+                                        </f:if>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><span style="font-size: 12px;" class="glyphicon glyphicon-remove"></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </f:for>
+</div>

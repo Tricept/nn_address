@@ -31,6 +31,6 @@ plugin.tx_nnaddress {
 		includeJS  = 0
 		
 		# cat=plugin.tx_nnaddress//a; type=boolean; label=Include Stylesheets
-		includeCSS = 1
+		includeCSS = 0
 	}
 }
