@@ -53,7 +53,7 @@ $TCA['tx_nnaddress_domain_model_person'] = array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),
-		'searchFields' => 'gender,title,first_name,second_first_name,last_name,organisation,birthday,image,website,notes,addresses,phones,mails,groups,categories,',
+		'searchFields' => 'gender,title,first_name,second_first_name,last_name,organisation,position,birthday,image,street,number,zip,city,phone,fax,email,website,notes,addresses,phones,mails,groups,categories,',
 		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Person.php',
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_nnaddress_domain_model_person.gif'
 	),

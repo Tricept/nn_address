@@ -4,6 +4,7 @@ if (!defined('TYPO3_MODE')) {
 }
 
 $TCA['tx_nnaddress_domain_model_person'] = array(
+
     'ctrl' => $TCA['tx_nnaddress_domain_model_person']['ctrl'],
     'interface' => array(
         'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, gender, title, first_name, second_first_name, last_name, organisation, birthday, image, website, notes, addresses, phones, mails, groups, categories, flexform',

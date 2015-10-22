@@ -81,7 +81,7 @@ class PersonController extends \NN\NnAddress\Mvc\Controller\BasicController {
 		$persons        = $this->getPersons();
 		$charset        = AbcListActionHelper::getSystemCharset();
 		$range          = array();
-        $personCount    = 0;
+    $personCount    = 0;
 		$groupedPersons = array();
 		$filterChar     = $this->getRequestArgument('char', '/^([A-Z]{1}|NUM)$/');
 		$filterChar     = ( $filterChar == 'NUM' ) ? '#' : $filterChar;

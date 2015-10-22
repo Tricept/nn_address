@@ -30,17 +30,44 @@
 			<trans-unit id="organisation.description">
 				<source>organisation</source>
 			</trans-unit>
+			<trans-unit id="position.description">
+				<source>Position</source>
+			</trans-unit>
 			<trans-unit id="birthday.description">
 				<source>birthday</source>
 			</trans-unit>
 			<trans-unit id="image.description">
 				<source>image</source>
 			</trans-unit>
+			<trans-unit id="street.description">
+				<source>Street</source>
+			</trans-unit>
+			<trans-unit id="number.description">
+				<source>Number</source>
+			</trans-unit>
+			<trans-unit id="zip.description">
+				<source>ZIP</source>
+			</trans-unit>
+			<trans-unit id="city.description">
+				<source>City</source>
+			</trans-unit>
+			<trans-unit id="phone.description">
+				<source>Phone</source>
+			</trans-unit>
+			<trans-unit id="fax.description">
+				<source>Fax</source>
+			</trans-unit>
+			<trans-unit id="email.description">
+				<source>eMail</source>
+			</trans-unit>
 			<trans-unit id="website.description">
 				<source>website</source>
 			</trans-unit>
 			<trans-unit id="notes.description">
 				<source>notes</source>
+			</trans-unit>
+			<trans-unit id="address.description">
+				<source>address</source>
 			</trans-unit>
 			<trans-unit id="addresses.description">
 				<source>addresses</source>

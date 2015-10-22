@@ -14,7 +14,27 @@
           
           <dt><f:translate key="tx_nnaddress_domain_model_person.organisation" /></dt>
           <dd>{person.organisation}</dd>
-          
+
+          <dt><f:translate key="tx_nnaddress_domain_model_person.position" /></dt>
+          <dd>{person.position}</dd>
+
+          <dt><f:translate key="tx_nnaddress_domain_model_person.address" /></dt>
+          <dd>{person.street} {person.number}<br>
+            {person.zip} {person.city}<br>
+          </dd>
+
+          <dt><f:translate key="tx_nnaddress_domain_model_person.phone" /></dt>
+          <dd>{person.phone}</dd>
+
+          <dt><f:translate key="tx_nnaddress_domain_model_person.fax" /></dt>
+          <dd>{person.fax}</dd>
+
+          <dt><f:translate key="tx_nnaddress_domain_model_person.email" /></dt>
+          <dd><f:link.email email="{person.email}" /></dd>
+
+          <dt><f:translate key="tx_nnaddress_domain_model_person.website" /></dt>
+          <dd><f:link.external uri="{person.website}">{person.website}</f:link.external></dd>
+
           <dt><f:translate key="tx_nnaddress_domain_model_person.addresses" /></dt>
           <dd>
           	<f:alias map="{address: '{person.addresses -> nn:iterator.first()}'}">

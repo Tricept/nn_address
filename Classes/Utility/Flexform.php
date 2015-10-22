@@ -26,7 +26,8 @@ class Flexform {
 
             $pluginSignature = strtolower($extensionName . '_' . $fileKey);
 			
-            $TCA['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'layout,select_key,recursive';
+            #$TCA['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'layout,select_key,recursive';
+						$TCA['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'select_key,recursive';
             $TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
 
             $fileFlexForm = 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/' . $fileKey . '.xml';

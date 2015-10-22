@@ -78,6 +78,17 @@ class ActionController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	}
 	
 	/**
+	 * Makes the data object in fluid accessible
+	 *
+	 * @param \TYPO3\CMS\Extbase\Mvc\ViewInterface $view
+	 * @return void
+	*/
+	protected function initializeView($view) {
+		parent::initializeView($view);
+		$view->assign('data', $this->configurationManager->getContentObject()->data);
+	}
+	
+	/**
 	 * Checks if the startingpoint via flexform is set and overrides the storagePid
 	 * if nothing is set, even the storagePid, it uses the current page as storagePid
 	 *

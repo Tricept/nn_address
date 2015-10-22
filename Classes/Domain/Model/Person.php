@@ -25,6 +25,7 @@ namespace NN\NnAddress\Domain\Model;
  */
 class Person extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
+
     /**
      * addresses
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\NN\NnAddress\Domain\Model\Address>
@@ -512,7 +513,6 @@ class Person extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
         $this->categories = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $this->image = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
     }
-
 }
 
 ?>
