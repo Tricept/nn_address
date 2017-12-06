@@ -10,12 +10,12 @@
  * writing. "version" and "dependencies" must not be touched!
  ***************************************************************/
 
-$EM_CONF[$_EXTKEY] = array (
+$EM_CONF[$_EXTKEY] = [
 	'title' => 'NN Address',
 	'description' => 'Powerful Address extension. Fully based on Extbase/Fluid as an new alternative to tt_address. You can add multiple addresses,email address, etc. to a contact. No need to create multiple for one anymore. If more fields neededyou can simply extend them with flexforms.',
 	'category' => 'plugin',
 	'shy' => 0,
-	'version' => '3.0.1',
+	'version' => '4.0.0',
 	'dependencies' => '',
 	'conflicts' => '',
 	'priority' => '',
@@ -32,21 +32,13 @@ $EM_CONF[$_EXTKEY] = array (
 	'author_company' => 'Neonaut GmbH, BEL NET GmbH',
 	'CGLcompliance' => NULL,
 	'CGLcompliance_note' => NULL,
-	'constraints' => 
-	array (
-		'depends' => 
-		array (
-			'extbase' => '6.0.0-7.99',
-			'fluid' => '6.0.0-7.99',
-			'typo3' => '6.0.0-7.99',
-		),
-		'conflicts' => 
-		array (
-		),
-		'suggests' => 
-		array (
-		),
-	),
-);
-
-?>
+	'constraints' =>
+        [
+            'depends' =>
+                array (
+                    'typo3' => '7.6.13-8.7.99',
+                ),
+            'conflicts' => [],
+            'suggests' => []
+        ]
+];

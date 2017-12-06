@@ -226,8 +226,8 @@
 							<label>Columns Desktop</label>
 							<displayCond>
 								<OR>
-									<numIndex>FIELD:settings.template:=:1</numIndex>
-									<numIndex>FIELD:settings.template:=:2</numIndex>
+									<numIndex index="0">FIELD:settings.template:=:1</numIndex>
+									<numIndex index="1">FIELD:settings.template:=:2</numIndex>
 								</OR>
 							</displayCond>
 							<config>
@@ -261,8 +261,8 @@
 							<label>Columns Tablet</label>
 							<displayCond>
 								<OR>
-									<numIndex>FIELD:settings.template:=:1</numIndex>
-									<numIndex>FIELD:settings.template:=:2</numIndex>
+									<numIndex index="0">FIELD:settings.template:=:1</numIndex>
+									<numIndex index="1">FIELD:settings.template:=:2</numIndex>
 								</OR>
 							</displayCond>
 							<config>
@@ -296,8 +296,8 @@
 							<label>Columns Mobile</label>
 							<displayCond>
 								<OR>
-									<numIndex>FIELD:settings.template:=:1</numIndex>
-									<numIndex>FIELD:settings.template:=:2</numIndex>
+									<numIndex index="0">FIELD:settings.template:=:1</numIndex>
+									<numIndex index="1">FIELD:settings.template:=:2</numIndex>
 								</OR>
 							</displayCond>
 							<config>

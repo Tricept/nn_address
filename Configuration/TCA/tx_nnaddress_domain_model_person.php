@@ -1,23 +1,44 @@
 <?php
-if (!defined('TYPO3_MODE')) {
-    die ('Access denied.');
-}
+return array(
+    'ctrl' => array(
+        'title'	=> 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person',
+        'label' => 'last_name',
+        'label_alt' => 'first_name,organisation',
+        'label_alt_force' => 1,
+        'tstamp' => 'tstamp',
+        'crdate' => 'crdate',
+        'cruser_id' => 'cruser_id',
+        'dividers2tabs' => TRUE,
 
-$TCA['tx_nnaddress_domain_model_person'] = array(
-
-    'ctrl' => $TCA['tx_nnaddress_domain_model_person']['ctrl'],
+        'versioningWS'  => TRUE,
+        'origUid' => 't3_origuid',
+        'languageField' => 'sys_language_uid',
+        'transOrigPointerField' => 'l10n_parent',
+        'transOrigDiffSourceField' => 'l10n_diffsource',
+        'delete' => 'deleted',
+        'enablecolumns' => array(
+            'disabled' => 'hidden',
+            'starttime' => 'starttime',
+            'endtime' => 'endtime',
+        ),
+        'searchFields' => 'gender,title,first_name,second_first_name,last_name,organisation,position,birthday,image,street,number,zip,city,phone,fax,email,website,notes,addresses,phones,mails,groups,categories,',
+        'iconfile' => 'EXT:nn_address/Resources/Public/Icons/tx_nnaddress_domain_model_person.png'
+    ),
     'interface' => array(
         'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, gender, title, first_name, second_first_name, last_name, organisation, birthday, image, website, notes, addresses, phones, mails, groups, categories, flexform',
     ),
-    'types' => array(
-        '1' => array('showitem' => 'l10n_parent, l10n_diffsource, hidden;;1, gender, title, first_name, second_first_name, last_name, organisation, birthday, image, website, notes,
-									--div--;LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.addresses, addresses, 
-									--div--;LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.phones, phones,
-									--div--;LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.mails, mails, 
-									--div--;LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.assignment, groups, categories,
-									--div--;LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.advanced, flexform,
-									--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
-    ),
+    'types' => [
+        '0' => [
+            'showitem' => '
+                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,  gender, title, first_name, second_first_name, last_name, organisation, birthday, image, website, notes,
+                --div--;LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.addresses, addresses, 
+                --div--;LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.phones, phones,
+                --div--;LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.mails, mails, 
+                --div--;LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.assignment, groups, categories,
+                --div--;LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.advanced, flexform,
+                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access, sys_language_uid, l10n_parent, l10n_diffsource, hidden, starttime, endtime'
+        ],
+    ],
     'palettes' => array(
         '1' => array('showitem' => ''),
     ),
@@ -27,6 +48,7 @@ $TCA['tx_nnaddress_domain_model_person'] = array(
             'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
             'config' => array(
                 'type' => 'select',
+                'renderType' => 'selectSingle',
                 'foreign_table' => 'sys_language',
                 'foreign_table_where' => 'ORDER BY sys_language.title',
                 'items' => array(
@@ -41,6 +63,7 @@ $TCA['tx_nnaddress_domain_model_person'] = array(
             'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.l18n_parent',
             'config' => array(
                 'type' => 'select',
+                'renderType' => 'selectSingle',
                 'items' => array(
                     array('', 0),
                 ),
@@ -70,34 +93,38 @@ $TCA['tx_nnaddress_domain_model_person'] = array(
         ),
         'starttime' => array(
             'exclude' => 1,
-            'l10n_mode' => 'mergeIfNotBlank',
             'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.starttime',
             'config' => array(
                 'type' => 'input',
+                'renderType' => 'inputDateTime',
                 'size' => 13,
-                'max' => 20,
                 'eval' => 'datetime',
                 'checkbox' => 0,
                 'default' => 0,
                 'range' => array(
                     'lower' => mktime(0, 0, 0, date('m'), date('d'), date('Y'))
                 ),
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ]
             ),
         ),
         'endtime' => array(
             'exclude' => 1,
-            'l10n_mode' => 'mergeIfNotBlank',
             'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.endtime',
             'config' => array(
                 'type' => 'input',
+                'renderType' => 'inputDateTime',
                 'size' => 13,
-                'max' => 20,
                 'eval' => 'datetime',
                 'checkbox' => 0,
                 'default' => 0,
                 'range' => array(
                     'lower' => mktime(0, 0, 0, date('m'), date('d'), date('Y'))
                 ),
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ]
             ),
         ),
         'gender' => array(
@@ -105,6 +132,7 @@ $TCA['tx_nnaddress_domain_model_person'] = array(
             'label' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.gender',
             'config' => array(
                 'type' => 'select',
+                'renderType' => 'selectSingle',
                 'items' => array(
                     array('LLL:EXT:nn_address/Resources/Private/Language/locallang_csh_tx_nnaddress_domain_model_person.xlf:gender.0', 0),
                     array('LLL:EXT:nn_address/Resources/Private/Language/locallang_csh_tx_nnaddress_domain_model_person.xlf:gender.1', 1),
@@ -164,6 +192,7 @@ $TCA['tx_nnaddress_domain_model_person'] = array(
             'label' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.birthday',
             'config' => array(
                 'type' => 'input',
+                'renderType' => 'inputDateTime',
                 'size' => 7,
                 'eval' => 'date',
                 'checkbox' => 1,
@@ -173,48 +202,29 @@ $TCA['tx_nnaddress_domain_model_person'] = array(
         'image' => array(
             'exclude' => 1,
             'label' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.image',
-            'config' =>
-                \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
-                    'images',
-                    array('maxitems' => 99,
-                        'appearance' => array(
-                            'createNewRelationLinkTitle' => 'LLL:EXT:cms/locallang_ttc.xlf:images.addFileReference'
-                        ),
-                        'foreign_types' => array(
-                            '0' => array(
+            'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
+                'images',
+                [
+                    'maxitems' => 99,
+                    'appearance' => [
+                        'createNewRelationLinkTitle' => 'LLL:EXT:cms/locallang_ttc.xlf:images.addFileReference',
+                        'showPossibleLocalizationRecords' => true,
+                        'showRemovedLocalizationRecords' => true,
+                        'showAllLocalizationLink' => true,
+                        'showSynchronizationLink' => true
+                    ],
+                    'overrideChildTca' => [
+                        'types' => [
+                            \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
                                 'showitem' => '
-							--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-							--palette--;;filePalette'
-                            ),
-                            \TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT => array(
-                                'showitem' => '
-							--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-							--palette--;;filePalette'
-                            ),
-                            \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => array(
-                                'showitem' => '
-							--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-							--palette--;;filePalette'
-                            ),
-                            \TYPO3\CMS\Core\Resource\File::FILETYPE_AUDIO => array(
-                                'showitem' => '
-							--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-							--palette--;;filePalette'
-                            ),
-                            \TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => array(
-                                'showitem' => '
-							--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-							--palette--;;filePalette'
-                            ),
-                            \TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION => array(
-                                'showitem' => '
-							--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-							--palette--;;filePalette'
-                            )
-                        )
-                    ),
-                    $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
-                ),
+                                            --palette--;LLL:EXT:lang/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                                            --palette--;;filePalette'
+                            ],
+                        ],
+                    ],
+                ],
+                $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
+            ),
         ),
         'website' => array(
             'exclude' => 1,
@@ -228,13 +238,10 @@ $TCA['tx_nnaddress_domain_model_person'] = array(
         'notes' => array(
             'exclude' => 1,
             'label' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.notes',
-            'config' => array(
+            'config' => [
                 'type' => 'text',
-                'cols' => 40,
-                'rows' => 15,
-                'eval' => 'trim'
-            ),
-            'defaultExtras' => 'richtext[]'
+                'enableRichtext' => true,
+            ],
         ),
         'addresses' => array(
             'exclude' => 1,
@@ -298,6 +305,7 @@ $TCA['tx_nnaddress_domain_model_person'] = array(
             'label' => 'LLL:EXT:nn_address/Resources/Private/Language/locallang_db.xlf:tx_nnaddress_domain_model_person.groups',
             'config' => array(
                 'type' => 'select',
+                'renderType' => 'selectMultipleSideBySide',
                 'foreign_table' => 'tx_nnaddress_domain_model_group',
                 'foreign_table_where' => ' AND (((\'###PAGE_TSCONFIG_IDLIST###\' <> \'\' OR \'###PAGE_TSCONFIG_IDLIST###\' > 0) AND FIND_IN_SET(tx_nnaddress_domain_model_group.pid,\'###PAGE_TSCONFIG_IDLIST###\')) OR (\'###PAGE_TSCONFIG_IDLIST###\' = \'\' OR \'###PAGE_TSCONFIG_IDLIST###\' = 0)) AND tx_nnaddress_domain_model_group.sys_language_uid=###REC_FIELD_sys_language_uid### ORDER BY tx_nnaddress_domain_model_group.title ',
                 'MM' => 'tx_nnaddress_person_group_mm',
@@ -307,21 +315,5 @@ $TCA['tx_nnaddress_domain_model_person'] = array(
                 'multiple' => 0,
             ),
         ),
-        'flexform' => array(
-            'exclude' => 1,
-            'label' => '',
-            'config' => array(
-                'type' => 'flex',
-                'ds_pointerField' => 'uid',
-                'ds' => array(
-                    'default' => ''
-                ),
-            ),
-        )
     ),
 );
-
-// Add Flexform if in extManager Conf is set or remove the sheet
-\NN\NnAddress\Utility\Flexform::modifyFlexSheet($TCA, 'person');
-
-?>

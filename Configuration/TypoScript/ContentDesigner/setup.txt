@@ -58,7 +58,7 @@ lib.userdata {
   
   renderObj = COA
   renderObj {
-    # Nur weiter machen, wenn Nutzerdaten verfügbar
+    # Nur weiter machen, wenn Nutzerdaten verfÃ¼gbar
     if.isTrue.field = userid
     
     10 = TEXT
@@ -102,9 +102,9 @@ tt_content.tx_contentdesigner_useronpages.settings {
     features.rewrittenPropertyMapper = 1
     
 	view {
-	  templateRootPath = {$plugin.tx_nnaddress_contentdesigner.view.all.templateRootPath}
-	  partialRootPath  = {$plugin.tx_nnaddress_contentdesigner.view.all.partialRootPath}
-	  layoutRootPath   = {$plugin.tx_nnaddress_contentdesigner.view.all.layoutRootPath}
+	  templateRootPaths.0 = {$plugin.tx_nnaddress_contentdesigner.view.all.templateRootPath}
+	  partialRootPaths.0  = {$plugin.tx_nnaddress_contentdesigner.view.all.partialRootPath}
+	  layoutRootPaths.0  = {$plugin.tx_nnaddress_contentdesigner.view.all.layoutRootPath}
 	}
     
     settings {
@@ -138,9 +138,9 @@ tt_content.tx_contentdesigner_useroncurpage.settings {
     features.rewrittenPropertyMapper = 1
 	
 	view {
-	  templateRootPath = {$plugin.tx_nnaddress_contentdesigner.view.single.templateRootPath}
-	  partialRootPath  = {$plugin.tx_nnaddress_contentdesigner.view.single.partialRootPath}
-	  layoutRootPath   = {$plugin.tx_nnaddress_contentdesigner.view.single.layoutRootPath}
+	  templateRootPaths.0 = {$plugin.tx_nnaddress_contentdesigner.view.single.templateRootPath}
+	  partialRootPaths.0  = {$plugin.tx_nnaddress_contentdesigner.view.single.partialRootPath}
+	  layoutRootPaths.0   = {$plugin.tx_nnaddress_contentdesigner.view.single.layoutRootPath}
 	}
 	
     settings {

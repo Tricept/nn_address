@@ -1,47 +1,45 @@
 <?php
 if (!defined('TYPO3_MODE')) {
-	die ('Access denied.');
+    die ('Access denied.');
 }
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-	'NN.' . $_EXTKEY,
-	'Single',
-	array(
-		'Person' => 'single',
-		
-	),
-	// non-cacheable actions
-	array(
-		'Person' => '',
-	)
+    'NN.' . $_EXTKEY,
+    'Single',
+    array(
+        'Person' => 'single',
+
+    ),
+    // non-cacheable actions
+    array(
+        'Person' => '',
+    )
 );
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-	'NN.' . $_EXTKEY,
-	'List',
-	array(
-		'Person' => 'list, grouplist',
-		
-	),
-	// non-cacheable actions
-	array(
-		'Person' => 'grouplist',
-		
-	)
+    'NN.' . $_EXTKEY,
+    'List',
+    array(
+        'Person' => 'list, grouplist',
+
+    ),
+    // non-cacheable actions
+    array(
+        'Person' => 'grouplist',
+
+    )
 );
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-	'NN.' . $_EXTKEY,
-	'AbcList',
-	array(
-		'Person' => 'abcList, show',
-		
-	),
-	// non-cacheable actions
-	array(
-		'Person' => '',
-		
-	)
-);
+    'NN.' . $_EXTKEY,
+    'AbcList',
+    array(
+        'Person' => 'abcList, show',
 
-?>
+    ),
+    // non-cacheable actions
+    array(
+        'Person' => '',
+
+    )
+);

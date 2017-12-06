@@ -1,19 +1,19 @@
 mod.wizards.newContentElement.wizardItems.plugins.elements.nnaddresssingle {
-	icon = gfx/c_wiz/regular_text.gif
+	icon =  ../typo3conf/ext/nn_address/Resources/Public/Icons/ce_wiz_single.png
 	title = Address - Single
 	description = Shows a single selected address
 	params = &defVals[tt_content][CType]=list&defVals[tt_content][list_type]=nnaddress_single
 }
 
 mod.wizards.newContentElement.wizardItems.plugins.elements.nnaddresslist {
-	icon = gfx/c_wiz/regular_text.gif
+	icon = ../typo3conf/ext/nn_address/Resources/Public/Icons/ce_wiz_list.png
 	title = Address - List
 	description = List addresses with detail view
 	params = &defVals[tt_content][CType]=list&defVals[tt_content][list_type]=nnaddress_list
 }
 
 mod.wizards.newContentElement.wizardItems.plugins.elements.nnaddressabclist {
-	icon = gfx/c_wiz/regular_text.gif
+	icon = ../typo3conf/ext/nn_address/Resources/Public/Icons/ce_wiz_abc.png
 	title = Address - ABC List
 	description = List of grouped addresses with detail view
 	params = &defVals[tt_content][CType]=list&defVals[tt_content][list_type]=nnaddress_abclist
